@@ -36,7 +36,8 @@ model FirmenAnfrage {
 }
 
 model Admin {
-  id           String @id @default(cuid())
-  username     String @unique
+  id           String   @id @default(cuid())
+  email        String   @unique
   passwordHash String
+  createdAt    DateTime @default(now())
 }

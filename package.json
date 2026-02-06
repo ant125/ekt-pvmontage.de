@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^7.3.0",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "next": "latest",
     "prisma": "^7.3.0",
@@ -20,8 +21,13 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/bcrypt": "^5.0.2",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "tsx": "^4.19.2",
     "typescript": "latest"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }

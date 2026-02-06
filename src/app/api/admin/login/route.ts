@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-
-const ADMIN_EMAIL = "admin@example.com";
-const ADMIN_PASSWORD = "admin123";
+import bcrypt from "bcrypt";
+import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   const contentType = request.headers.get("content-type") || "";
@@ -18,7 +17,17 @@ export async function POST(request: Request) {
     password = String(formData.get("password") || "");
   }
 
-  if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
+  const admin = await prisma.admin.findUnique({
+    where: { email },
+  });
+
+  if (!admin) {
+    return NextResponse.json({ success: false }, { status: 401 });
+  }
+
+  const isValid = await bcrypt.compare(password, admin.passwordHash);
+
+  if (!isValid) {
     return NextResponse.json({ success: false }, { status: 401 });
   }
 
