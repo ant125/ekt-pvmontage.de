@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Project {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  city         String
+  modulesCount Int
+  powerKWp     Float
+  batteryKWh   Float
+  images       Json
+  createdAt    DateTime @default(now())
+}
+
+model TeamMember {
+  id    String @id @default(cuid())
+  name  String
+  role  String
+  image String
+}
+
+model FirmenAnfrage {
+  id          String   @id @default(cuid())
+  firmName    String
+  contactName String
+  phone       String
+  email       String
+  message     String
+  createdAt   DateTime @default(now())
+}
+
+model Admin {
+  id           String @id @default(cuid())
+  username     String @unique
+  passwordHash String
+}
