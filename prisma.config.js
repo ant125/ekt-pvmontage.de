@@ -1,9 +1,11 @@
 require("dotenv").config({ path: ".env.local" });
-const { defineConfig, env } = require("prisma/config");
+const { defineConfig } = require("prisma/config");
 
 module.exports = defineConfig({
   schema: "prisma/schema.prisma",
   datasource: {
-    url: env("DATABASE_URL"),
+    url:
+      process.env.DATABASE_URL ||
+      "postgresql://user:password@localhost:5432/database",
   },
 });
