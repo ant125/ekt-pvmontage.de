@@ -38,7 +38,7 @@ model FirmenAnfrage {
 }
 
 model Admin {
-  id           String   @id @default(cuid())
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email        String   @unique
   passwordHash String
   createdAt    DateTime @default(now())
