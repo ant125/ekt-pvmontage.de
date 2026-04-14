@@ -73,8 +73,8 @@ export default function Page() {
       <section className="fade-up relative overflow-hidden bg-zinc-50 min-h-[88vh]">
         <div className="pointer-events-none absolute -right-20 bottom-0 h-[520px] w-[520px] rounded-full bg-zinc-200/50 blur-3xl" />
         <div className="pointer-events-none absolute left-0 top-0 h-28 w-full bg-gradient-to-b from-white/40 to-transparent" />
-        <div className="mx-auto grid min-h-[88vh] max-w-6xl items-center gap-10 px-6 py-10 md:grid-cols-2 md:items-stretch md:gap-12 md:py-12">
-          <div className="max-w-xl md:flex md:h-full md:flex-col md:justify-center">
+        <div className="mx-auto grid min-h-[88vh] max-w-6xl items-stretch gap-8 px-6 py-10 md:grid-cols-2 md:gap-8 md:py-10 lg:gap-10 lg:py-12">
+          <div className="flex max-w-xl flex-col justify-center">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
               Hallo, ich bin Besik Gigauri
             </p>
@@ -108,16 +108,16 @@ export default function Page() {
             </div>
             <a
               href="#kontakt"
-              className="mt-7 inline-flex items-center rounded-md border border-zinc-300 bg-white px-5 py-2.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:border-zinc-400 hover:bg-zinc-100"
+              className="mt-7 inline-flex w-fit shrink-0 items-center rounded-full border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm transition-all duration-300 hover:border-zinc-400 hover:bg-zinc-50 hover:shadow"
             >
               Jetzt Kontakt aufnehmen
             </a>
           </div>
-          <div className="relative z-10 flex min-h-[360px] items-end justify-center md:h-full md:min-h-0 md:justify-end">
+          <div className="relative z-10 flex min-h-[300px] items-end justify-center md:min-h-0 md:justify-end md:pr-0">
             <img
               src="/hero-worker.png"
               alt="Besik Gigauri – Photovoltaik-Montage"
-              className="h-[min(68vh,560px)] w-auto max-w-full object-contain object-bottom drop-shadow-[0_30px_55px_rgba(0,0,0,0.28)] md:h-[min(calc(88vh-5.5rem),900px)] md:max-w-none"
+              className="h-[min(78vh,700px)] w-auto max-w-full object-contain object-bottom drop-shadow-[0_28px_60px_rgba(0,0,0,0.22)] md:h-[min(92vh,1000px)] md:max-w-none md:self-end md:translate-x-1 lg:translate-x-3"
             />
           </div>
         </div>
