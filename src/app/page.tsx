@@ -70,8 +70,8 @@ export default function Page() {
 
   return (
     <main className="bg-white text-zinc-800">
-      <section className="fade-up bg-zinc-50 py-16 md:py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2">
+      <section className="fade-up bg-zinc-50 pb-8 pt-10 md:pb-10 md:pt-14">
+        <div className="mx-auto grid max-w-6xl items-end gap-8 px-6 md:grid-cols-2">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-zinc-500">
               Hallo, ich bin Markus Klein
@@ -89,11 +89,11 @@ export default function Page() {
               Kostenloses Angebot anfordern
             </a>
           </div>
-          <div className="flex justify-center md:justify-end">
+          <div className="flex items-end justify-center md:justify-end">
             <img
-              src="https://pngimg.com/d/man_PNG6531.png"
+              src="https://images.pexels.com/photos/8961300/pexels-photo-8961300.jpeg?auto=compress&cs=tinysrgb&w=900"
               alt="Photovoltaik-Fachmann"
-              className="h-auto w-full max-w-sm rounded-3xl object-contain drop-shadow-2xl"
+              className="h-auto w-full max-w-[360px] rounded-3xl object-cover shadow-2xl"
             />
           </div>
         </div>
