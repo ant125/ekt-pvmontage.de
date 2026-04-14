@@ -1,0 +1,32 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="450" y1="120" x2="450" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F4F5"/>
+      <stop offset="1" stop-color="#E4E4E7"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="450" y1="430" x2="450" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F2937"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="450" cy="980" rx="230" ry="42" fill="#D4D4D8"/>
+  <path d="M450 80C640 80 760 230 760 470V760C760 930 620 1030 450 1030C280 1030 140 930 140 760V470C140 230 260 80 450 80Z" fill="url(#bg)"/>
+
+  <rect x="340" y="150" width="220" height="82" rx="20" fill="#F59E0B"/>
+  <rect x="316" y="214" width="268" height="30" rx="15" fill="#D97706"/>
+  <circle cx="450" cy="315" r="108" fill="#F1C9A5"/>
+  <rect x="408" y="390" width="84" height="66" rx="18" fill="#E5B995"/>
+
+  <path d="M276 558C276 492 330 438 396 438H504C570 438 624 492 624 558V896H276V558Z" fill="url(#shirt)"/>
+  <rect x="246" y="548" width="70" height="250" rx="35" fill="#1F2937"/>
+  <rect x="584" y="548" width="70" height="250" rx="35" fill="#1F2937"/>
+
+  <rect x="314" y="610" width="272" height="170" rx="24" fill="#F59E0B"/>
+  <rect x="438" y="610" width="24" height="170" fill="#D97706"/>
+  <rect x="358" y="660" width="50" height="50" rx="12" fill="#111827"/>
+  <rect x="492" y="660" width="50" height="50" rx="12" fill="#111827"/>
+
+  <rect x="296" y="896" width="122" height="120" rx="26" fill="#27272A"/>
+  <rect x="482" y="896" width="122" height="120" rx="26" fill="#27272A"/>
+</svg>
