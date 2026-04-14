@@ -70,9 +70,10 @@ export default function Page() {
 
   return (
     <main className="bg-white text-zinc-800">
-      <section className="fade-up bg-zinc-50 pb-8 pt-10 md:pb-10 md:pt-14">
-        <div className="mx-auto grid max-w-6xl items-end gap-8 px-6 md:grid-cols-2">
-          <div>
+      <section className="fade-up relative overflow-hidden bg-zinc-50 pb-0 pt-6 md:min-h-[84vh] md:pt-10">
+        <div className="pointer-events-none absolute -right-24 bottom-0 h-[520px] w-[520px] rounded-full bg-zinc-200/40 blur-3xl" />
+        <div className="mx-auto grid h-full max-w-6xl items-end gap-8 px-6 md:grid-cols-2">
+          <div className="pb-10 md:pb-16">
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-zinc-500">
               Hallo, ich bin Markus Klein
             </p>
@@ -89,11 +90,11 @@ export default function Page() {
               Kostenloses Angebot anfordern
             </a>
           </div>
-          <div className="flex items-end justify-center md:justify-end">
+          <div className="relative z-10 flex items-end justify-center md:justify-end">
             <img
-              src="https://images.pexels.com/photos/8961300/pexels-photo-8961300.jpeg?auto=compress&cs=tinysrgb&w=900"
+              src="https://pngimg.com/d/construction_worker_PNG40.png"
               alt="Photovoltaik-Fachmann"
-              className="h-auto w-full max-w-[360px] rounded-3xl object-cover shadow-2xl"
+              className="h-auto w-full max-w-[460px] object-contain drop-shadow-2xl md:max-w-[560px]"
             />
           </div>
         </div>
