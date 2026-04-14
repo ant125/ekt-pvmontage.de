@@ -70,23 +70,23 @@ export default function Page() {
 
   return (
     <main className="bg-white text-zinc-800">
-      <section className="fade-up relative overflow-x-clip overflow-y-visible bg-zinc-50 min-h-[88vh]">
+      <section className="fade-up relative w-full overflow-x-clip overflow-y-visible bg-zinc-50 min-h-[88vh]">
         <div className="pointer-events-none absolute -right-20 bottom-0 h-[520px] w-[520px] rounded-full bg-zinc-200/50 blur-3xl" />
         <div className="pointer-events-none absolute left-0 top-0 h-16 w-full bg-gradient-to-b from-white/40 to-transparent" />
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 pb-10 pt-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1.35fr)] md:items-stretch md:gap-10 md:pb-12 md:pt-8">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 pb-14 pt-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:items-stretch md:gap-8 md:pb-20 md:pt-8">
           <div className="relative z-20 max-w-xl self-start">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
               Hallo, ich bin Besik Gigauri
             </p>
-            <h1 className="mt-4 text-4xl font-semibold leading-[1.08] text-zinc-900 md:text-[3.15rem] lg:text-[3.45rem]">
+            <h1 className="mt-4 text-[1.65rem] font-semibold leading-[1.12] text-zinc-900 sm:text-3xl md:text-[2.65rem] lg:text-[2.85rem]">
               Photovoltaik-Montage und Dachreinigung im Raum Augsburg, München
               und Donauwörth
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 md:text-xl">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-600 md:text-lg">
               Saubere Arbeit, direkte Kommunikation und zuverlässige Ausführung
               für private und gewerbliche Kunden.
             </p>
-            <div className="mt-8 space-y-3 border-l-2 border-zinc-300 pl-4 text-base text-zinc-800 md:text-lg">
+            <div className="mt-7 space-y-3 border-l-2 border-zinc-300 pl-4 text-sm text-zinc-800 md:text-base">
               <p>
                 <span className="font-semibold text-zinc-900">Telefon:</span>{" "}
                 <a
@@ -108,17 +108,21 @@ export default function Page() {
             </div>
             <a
               href="#kontakt"
-              className="mt-7 inline-flex w-fit shrink-0 items-center rounded-full border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm transition-all duration-300 hover:border-zinc-400 hover:bg-zinc-50 hover:shadow"
+              className="mt-6 inline-flex w-fit shrink-0 items-center rounded-full border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm transition-all duration-300 hover:border-zinc-400 hover:bg-zinc-50 hover:shadow"
             >
               Jetzt Kontakt aufnehmen
             </a>
           </div>
-          <div className="relative z-10 min-h-[min(58vh,520px)] w-full min-w-0 overflow-hidden md:h-full md:min-h-0 md:pl-2">
-            <img
-              src="/hero-worker.png"
-              alt="Besik Gigauri – Photovoltaik-Montage"
-              className="absolute inset-0 h-full w-full object-cover object-right object-top drop-shadow-[0_28px_60px_rgba(0,0,0,0.22)]"
-            />
+          <div
+            className="relative z-10 min-h-[min(58vh,520px)] w-full min-w-0 overflow-hidden md:h-full md:min-h-0 md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2)))] md:[width:calc(100%+max(0px,(100vw-72rem)/2)))]"
+          >
+            <div className="absolute inset-0 overflow-hidden">
+              <img
+                src="/hero-worker.png"
+                alt="Besik Gigauri – Photovoltaik-Montage"
+                className="absolute inset-0 h-full w-full origin-top-right scale-105 object-contain object-right object-top drop-shadow-[0_28px_60px_rgba(0,0,0,0.22)] md:scale-110 lg:scale-[1.14]"
+              />
+            </div>
           </div>
         </div>
       </section>
