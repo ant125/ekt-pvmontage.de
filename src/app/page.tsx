@@ -49,7 +49,7 @@ export default function Page() {
           </p>
         </div>
         <img
-          src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80"
+          src="https://picsum.photos/1200/800?random=21"
           alt="Team bei der Montage"
           className="h-80 w-full rounded-xl object-cover"
         />
