@@ -73,7 +73,7 @@ export default function Page() {
       <section className="fade-up relative overflow-x-clip overflow-y-visible bg-zinc-50 min-h-[88vh]">
         <div className="pointer-events-none absolute -right-20 bottom-0 h-[520px] w-[520px] rounded-full bg-zinc-200/50 blur-3xl" />
         <div className="pointer-events-none absolute left-0 top-0 h-16 w-full bg-gradient-to-b from-white/40 to-transparent" />
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 pb-10 pt-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:items-stretch md:gap-10 md:pb-12 md:pt-8">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 pb-10 pt-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1.35fr)] md:items-stretch md:gap-10 md:pb-12 md:pt-8">
           <div className="relative z-20 max-w-xl self-start">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
               Hallo, ich bin Besik Gigauri
@@ -117,7 +117,7 @@ export default function Page() {
             <img
               src="/hero-worker.png"
               alt="Besik Gigauri – Photovoltaik-Montage"
-              className="absolute inset-0 h-full w-full object-contain object-right object-top drop-shadow-[0_28px_60px_rgba(0,0,0,0.22)]"
+              className="absolute inset-0 h-full w-full object-cover object-right object-top drop-shadow-[0_28px_60px_rgba(0,0,0,0.22)]"
             />
           </div>
         </div>
