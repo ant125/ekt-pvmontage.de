@@ -70,33 +70,31 @@ export default function Page() {
 
   return (
     <main className="bg-white text-zinc-800">
-      <section className="relative isolate overflow-hidden fade-up">
-        <img
-          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=80"
-          alt="Solaranlage auf Hausdach"
-          className="h-[68vh] w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="mx-auto w-full max-w-6xl px-6">
-            <div className="max-w-3xl text-white">
-              <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/85">
-                EKT PV Montage
-              </p>
-              <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
-                Zuverlaessige Loesungen fuer moderne Solarprojekte
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg text-white/90 md:text-xl">
-                Wir planen und montieren Photovoltaik-Anlagen fuer private und
-                gewerbliche Kunden - praezise, sauber und termingerecht.
-              </p>
-              <a
-                href="#kontakt"
-                className="mt-8 inline-flex items-center rounded-md bg-white px-6 py-3 text-sm font-medium text-zinc-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-100 hover:shadow-lg"
-              >
-                Kontakt aufnehmen
-              </a>
-            </div>
+      <section className="fade-up bg-zinc-50 py-16 md:py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2">
+          <div>
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-zinc-500">
+              Hallo, ich bin Markus Klein
+            </p>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight text-zinc-900 md:text-6xl">
+              Ich installiere Photovoltaik-Anlagen seit ueber 5 Jahren
+            </h1>
+            <p className="mt-6 max-w-xl text-lg text-zinc-600 md:text-xl">
+              Saubere Arbeit. Klare Kommunikation. Faire Preise.
+            </p>
+            <a
+              href="#kontakt"
+              className="mt-8 inline-flex items-center rounded-md bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-lg"
+            >
+              Kostenloses Angebot anfordern
+            </a>
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <img
+              src="https://pngimg.com/d/man_PNG6531.png"
+              alt="Photovoltaik-Fachmann"
+              className="h-auto w-full max-w-sm rounded-3xl object-contain drop-shadow-2xl"
+            />
           </div>
         </div>
       </section>
