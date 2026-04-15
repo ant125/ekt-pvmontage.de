@@ -70,7 +70,7 @@ export default function Page() {
 
   return (
     <main className="bg-white text-zinc-800">
-      <section className="fade-up relative flex min-h-screen w-full flex-col justify-center overflow-x-clip overflow-y-visible bg-zinc-50 py-10 md:py-14">
+      <section className="fade-up relative flex min-h-screen w-full flex-col justify-center overflow-x-clip overflow-y-visible bg-white py-10 md:py-14">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:gap-12">
           <div className="relative z-20 max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
@@ -111,16 +111,12 @@ export default function Page() {
               Jetzt Kontakt aufnehmen
             </a>
           </div>
-          <div
-            className="relative z-10 flex min-h-[min(52vh,480px)] w-full min-w-0 items-end justify-end overflow-hidden md:min-h-[min(70vh,820px)] md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2)))] md:[width:calc(100%+max(0px,(100vw-72rem)/2)))]"
-          >
-            <div className="relative h-full min-h-0 w-full overflow-hidden md:absolute md:inset-0">
-              <img
-                src="/hero-worker.png"
-                alt="Besik Gigauri – Photovoltaik-Montage"
-                className="h-full w-full origin-bottom-right scale-110 object-contain object-bottom object-right drop-shadow-[0_24px_48px_rgba(0,0,0,0.18)] md:absolute md:inset-0 md:scale-[1.2] lg:scale-[1.26]"
-              />
-            </div>
+          <div className="relative z-10 flex min-h-[min(48vh,420px)] w-full min-w-0 items-end justify-end md:min-h-0 md:h-full md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2)))] md:[width:calc(100%+max(0px,(100vw-72rem)/2)))]">
+            <img
+              src="/hero-worker.png"
+              alt="Besik Gigauri – Photovoltaik-Montage"
+              className="h-auto max-h-[min(62vh,640px)] w-auto max-w-full object-contain object-bottom object-right md:max-h-[min(78vh,860px)]"
+            />
           </div>
         </div>
       </section>
