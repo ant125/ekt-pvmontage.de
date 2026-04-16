@@ -111,7 +111,7 @@ export default function Page() {
               Jetzt Kontakt aufnehmen
             </a>
           </div>
-          <div className="relative z-10 flex min-h-[180px] w-full min-w-0 items-end justify-center md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/2))]">
+          <div className="relative z-10 flex min-h-[150px] w-full min-w-0 items-end justify-center md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/2))]">
             <img
               src="/hero-worker.png"
               alt="Besik Gigauri – Photovoltaik-Montage"
