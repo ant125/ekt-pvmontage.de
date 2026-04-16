@@ -71,7 +71,7 @@ export default function Page() {
   return (
     <main className="bg-white text-zinc-800">
       <section className="fade-up relative flex min-h-0 w-full flex-col justify-start overflow-x-clip overflow-y-visible bg-white py-6 md:min-h-[92vh] md:justify-center md:py-8">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:gap-12">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-4 px-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:gap-12">
           <div className="relative z-20 max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
               Hallo, ich bin Besik Gigauri
@@ -111,11 +111,11 @@ export default function Page() {
               Jetzt Kontakt aufnehmen
             </a>
           </div>
-          <div className="relative z-10 flex min-h-[150px] w-full min-w-0 items-end justify-center md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/2))]">
+          <div className="relative z-10 -mt-10 flex min-h-[150px] w-full min-w-0 items-end justify-center md:mt-0 md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/2))]">
             <img
               src="/hero-worker.png"
               alt="Besik Gigauri – Photovoltaik-Montage"
-              className="h-auto max-h-[300px] w-auto max-w-full object-contain object-bottom object-center mx-auto md:mx-0 md:max-h-[min(90vh,920px)] md:max-w-none md:object-right md:translate-x-32 lg:translate-x-40"
+              className="h-auto max-h-[300px] w-auto max-w-full object-contain object-bottom object-center mx-auto md:mx-0 md:max-h-[min(90vh,920px)] md:max-w-none md:object-right md:translate-x-26 lg:translate-x-34"
             />
           </div>
         </div>
