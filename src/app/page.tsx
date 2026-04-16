@@ -115,7 +115,7 @@ export default function Page() {
             <img
               src="/hero-worker.png"
               alt="Besik Gigauri – Photovoltaik-Montage"
-              className="h-auto max-h-[min(78vh,760px)] w-auto max-w-none object-contain object-bottom object-right md:max-h-[min(90vh,920px)] md:translate-x-28 lg:translate-x-36"
+              className="h-auto max-h-[min(78vh,760px)] w-auto max-w-none object-contain object-bottom object-right md:max-h-[min(90vh,920px)] md:translate-x-32 lg:translate-x-40"
             />
           </div>
         </div>
