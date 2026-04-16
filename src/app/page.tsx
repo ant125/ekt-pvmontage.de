@@ -111,11 +111,11 @@ export default function Page() {
               Jetzt Kontakt aufnehmen
             </a>
           </div>
-          <div className="relative z-10 -mt-10 flex min-h-[150px] w-full min-w-0 items-end justify-center md:mt-0 md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/2))]">
+          <div className="relative z-10 mt-4 flex min-h-[150px] w-full min-w-0 items-end justify-center md:mt-0 md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/2))]">
             <img
               src="/hero-worker.png"
               alt="Besik Gigauri – Photovoltaik-Montage"
-              className="h-auto max-h-[min(78vh,760px)] w-auto max-w-none object-contain object-bottom object-right translate-x-6 md:max-h-[min(90vh,920px)] md:translate-x-16 lg:translate-x-20"
+              className="h-auto max-h-[300px] w-auto max-w-full object-contain object-bottom object-center mx-auto md:mx-0 md:max-h-[min(90vh,920px)] md:max-w-none md:object-right md:translate-x-32 lg:translate-x-40"
             />
           </div>
         </div>
