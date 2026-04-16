@@ -70,7 +70,7 @@ export default function Page() {
 
   return (
     <main className="bg-white text-zinc-800">
-      <section className="fade-up relative flex min-h-screen w-full flex-col justify-center overflow-x-clip overflow-y-visible bg-white py-10 md:py-14">
+      <section className="fade-up relative flex min-h-[92vh] w-full flex-col justify-center overflow-x-clip overflow-y-visible bg-white py-6 md:py-8">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:gap-12">
           <div className="relative z-20 max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
@@ -115,7 +115,7 @@ export default function Page() {
             <img
               src="/hero-worker.png"
               alt="Besik Gigauri – Photovoltaik-Montage"
-              className="h-auto max-h-[min(78vh,760px)] w-auto max-w-none object-contain object-bottom object-right md:max-h-[min(90vh,920px)] md:translate-x-10"
+              className="h-auto max-h-[min(78vh,760px)] w-auto max-w-none object-contain object-bottom object-right md:max-h-[min(90vh,920px)] md:translate-x-16 lg:translate-x-20"
             />
           </div>
         </div>
