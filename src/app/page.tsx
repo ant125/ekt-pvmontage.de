@@ -70,7 +70,7 @@ export default function Page() {
 
   return (
     <main className="bg-white text-zinc-800">
-      <section className="fade-up relative flex min-h-[92vh] w-full flex-col justify-center overflow-x-clip overflow-y-visible bg-white py-6 md:py-8">
+      <section className="fade-up relative flex min-h-0 w-full flex-col justify-start overflow-x-clip overflow-y-visible bg-white py-6 md:min-h-[92vh] md:justify-center md:py-8">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:gap-12">
           <div className="relative z-20 max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
