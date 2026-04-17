@@ -91,7 +91,7 @@ export default function Page() {
   return (
     <main className="bg-white text-zinc-800">
       <section className="fade-up relative flex min-h-0 w-full flex-col justify-start overflow-x-clip overflow-y-visible bg-white py-6 md:min-h-[92vh] md:justify-center md:py-8">
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-4 px-6 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:gap-12">
+      <div className="mx-auto grid max-w-6xl gap-10 md:gap-16 px-6 md:grid-cols-2 md:items-center">
           <div className="relative z-20 max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-500">
               Hallo, ich bin Besik Gigauri
@@ -182,7 +182,7 @@ export default function Page() {
   Weiter unten finden Sie detaillierte Informationen zu meinen Leistungen.
 </p>
         </div>
-        <div className="relative h-80 w-full overflow-hidden rounded-xl">
+        <div className="relative h-80 w-full overflow-hidden rounded-xl md:ml-6">
   {aboutImages.map((img, index) => (
     <img
       key={img}
@@ -198,7 +198,7 @@ export default function Page() {
 </div>
       </section>
 
-      <section className="bg-zinc-50 py-16 fade-up">
+      <section className="bg-white py-20 fade-up">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
             Leistungen
