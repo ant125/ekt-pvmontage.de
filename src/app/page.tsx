@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useState } from "react";
 export default function Page() {
   const heroImageSettings = {
     scaleMobile: 0.55, // размер на мобилке
@@ -7,6 +9,16 @@ export default function Page() {
     xDesktop: 120, // сдвиг по X на десктопе
     yDesktop: 0,   // сдвиг по Y на десктопе чтобы выше картинка делаем значение ниже было -50
   };
+  const aboutImages = ["/lager1.jpg", "/lager2.jpg"];
+  const [currentAboutImage, setCurrentAboutImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAboutImage((prev) => (prev + 1) % 2);
+    }, 3000);
+  
+    return () => clearInterval(interval);
+  }, []);
   const services = [
     {
       icon: "☀",
@@ -150,22 +162,38 @@ export default function Page() {
         <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
   Über mich
 </h2>
-          <p className="mt-5 text-base leading-7 text-zinc-600">
-            Als lokaler Fachbetrieb begleiten wir Bauherren, Eigentuemer und
-            Unternehmen von der ersten Beratung bis zur fertigen Anlage. Unser
-            Team kombiniert handwerkliche Erfahrung mit moderner Technik -
-            fuer langlebige und wirtschaftliche Ergebnisse.
-          </p>
-          <p className="mt-4 text-base leading-7 text-zinc-600">
-            Klare Kommunikation, transparente Prozesse und saubere Ausfuehrung
-            stehen bei uns im Mittelpunkt jeder Zusammenarbeit.
-          </p>
+<p className="mt-5 text-base leading-7 text-zinc-600">
+  Ich bin Inhaber der Firma EKT PV Montage und seit über 5 Jahren im
+  Bereich Photovoltaik tätig.
+</p>
+<p className="mt-4 text-base leading-7 text-zinc-600">
+  Mein Schwerpunkt liegt auf der fachgerechten Montage von Solaranlagen
+  auf Dächern – sowohl für private als auch gewerbliche Kunden.
+</p>
+<p className="mt-4 text-base leading-7 text-zinc-600">
+  In dieser Zeit habe ich über 1000 Projekte erfolgreich umgesetzt und
+  verfüge über umfangreiche Erfahrung in Montage, Planung und Umsetzung.
+</p>
+<p className="mt-4 text-base leading-7 text-zinc-600">
+  Zusätzlich biete ich professionelle Dachreinigung an.
+</p>
+<p className="mt-4 text-base leading-7 text-zinc-600">
+  Weiter unten finden Sie detaillierte Informationen zu meinen Leistungen.
+</p>
         </div>
-        <img
-          src="https://picsum.photos/1200/800?random=21"
-          alt="Team bei der Montage"
-          className="h-80 w-full rounded-xl object-cover"
-        />
+        <div className="relative h-80 w-full overflow-hidden rounded-xl">
+  {aboutImages.map((img, index) => (
+    <img
+      key={img}
+      src={img}
+      alt="EKT PV Montage Lager"
+      className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+        index === currentAboutImage ? "opacity-100" : "opacity-0"
+      }`}
+    />
+  ))}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+</div>
       </section>
 
       <section className="bg-zinc-50 py-16 fade-up">
