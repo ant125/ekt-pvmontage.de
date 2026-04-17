@@ -1,4 +1,11 @@
 export default function Page() {
+  const heroImageSettings = {
+    scale: 1.18, // размер
+    xMobile: 0,  // сдвиг по X на мобилке
+    yMobile: 0,  // сдвиг по Y на мобилке
+    xDesktop: 140, // сдвиг по X на десктопе
+    yDesktop: 0,   // сдвиг по Y на десктопе
+  };
   const services = [
     {
       icon: "☀",
@@ -111,21 +118,37 @@ export default function Page() {
               Jetzt Kontakt aufnehmen
             </a>
           </div>
-          <div className="relative z-10 mt-4 flex min-h-[150px] w-full min-w-0 items-end justify-center md:mt-0 md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/2))]">
-            <img
-              src="/hero-worker.png"
-              alt="Besik Gigauri – Photovoltaik-Montage"
-              className="h-auto max-h-[300px] w-auto max-w-full object-contain object-bottom object-center mx-auto md:mx-0 md:max-h-[min(90vh,920px)] md:max-w-none md:object-right md:translate-x-32 lg:translate-x-40"
-            />
-          </div>
+          <div className="relative z-10 -mt-10 flex min-h-[150px] w-full min-w-0 items-end justify-center md:mt-0 md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/2))]">
+  <div className="relative h-[300px] w-full overflow-hidden md:h-[760px] lg:h-[820px]">
+    <img
+      src="/hero-worker.png"
+      alt="Besik Gigauri – Photovoltaik-Montage"
+     className="absolute bottom-0 left-1/2 h-auto w-auto max-w-none md:hidden"
+      style={{
+        transform: `translate(calc(-50% + ${heroImageSettings.xMobile}px), ${heroImageSettings.yMobile}px) scale(${heroImageSettings.scale})`,
+        transformOrigin: "bottom center",
+      }}
+    />
+
+    <img
+      src="/hero-worker.png"
+      alt="Besik Gigauri – Photovoltaik-Montage"
+      className="absolute bottom-0 right-0 hidden h-auto w-auto max-w-none md:block"
+      style={{
+        transform: `translate(${heroImageSettings.xDesktop}px, ${heroImageSettings.yDesktop}px) scale(${heroImageSettings.scale})`,
+        transformOrigin: "bottom right",
+      }}
+    />
+  </div>
+</div>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-10 bg-white px-6 py-16 md:grid-cols-2 md:items-center fade-up">
         <div>
-          <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
-            Ueber uns
-          </h2>
+        <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+  Über mich
+</h2>
           <p className="mt-5 text-base leading-7 text-zinc-600">
             Als lokaler Fachbetrieb begleiten wir Bauherren, Eigentuemer und
             Unternehmen von der ersten Beratung bis zur fertigen Anlage. Unser
