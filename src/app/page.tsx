@@ -2,8 +2,8 @@ export default function Page() {
   const heroImageSettings = {
     scaleMobile: 0.55, // размер на мобилке
     scaleDesktop: 0.6, // размер на десктопе
-    xMobile: -40,  // сдвиг по X на мобилке было -50
-    yMobile: 310,  // сдвиг по Y на мобилке было 320
+    xMobile: -30,  // сдвиг по X на мобилке было -40
+    yMobile: 300,  // сдвиг по Y на мобилке было 310
     xDesktop: 120, // сдвиг по X на десктопе
     yDesktop: 0,   // сдвиг по Y на десктопе чтобы выше картинка делаем значение ниже было -50
   };
