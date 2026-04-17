@@ -157,32 +157,53 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="fade-up bg-zinc-50 py-20">
-  <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-2 md:items-center">
+      <section className="fade-up relative bg-zinc-50 py-20 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.06)]">
+  <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:items-center md:gap-16 lg:gap-20">
         <div>
-        <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+          Über EKT PV Montage
+        </p>
+        <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
   Über mich
 </h2>
-<p className="mt-5 text-base leading-7 text-zinc-600">
+<p className="mt-6 text-base leading-[1.75] text-zinc-600">
   Ich bin Inhaber der Firma EKT PV Montage und seit über 5 Jahren im
   Bereich Photovoltaik tätig.
 </p>
-<p className="mt-4 text-base leading-7 text-zinc-600">
+<p className="mt-6 text-base leading-[1.75] text-zinc-600">
   Mein Schwerpunkt liegt auf der fachgerechten Montage von Solaranlagen
   auf Dächern – sowohl für private als auch gewerbliche Kunden.
 </p>
-<p className="mt-4 text-base leading-7 text-zinc-600">
+<p className="mt-6 text-base leading-[1.75] text-zinc-600">
   In dieser Zeit habe ich über 1000 Projekte erfolgreich umgesetzt und
   verfüge über umfangreiche Erfahrung in Montage, Planung und Umsetzung.
 </p>
-<p className="mt-4 text-base leading-7 text-zinc-600">
+<p className="mt-6 text-base leading-[1.75] text-zinc-600">
   Zusätzlich biete ich professionelle Dachreinigung an.
 </p>
-<p className="mt-4 text-base leading-7 text-zinc-600">
+<p className="mt-6 text-base leading-[1.75] text-zinc-600">
   Weiter unten finden Sie detaillierte Informationen zu meinen Leistungen.
 </p>
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+          {[
+            "5+ Jahre Erfahrung",
+            "1000+ Projekte",
+            "Privat & Gewerbe",
+            "Saubere Ausführung",
+          ].map((stat) => (
+            <div
+              key={stat}
+              className="rounded-xl border border-zinc-200/80 bg-white/80 px-3 py-3.5 shadow-sm backdrop-blur-sm sm:px-4 sm:py-4"
+            >
+              <p className="text-xs font-semibold leading-snug text-zinc-800 sm:text-sm">
+                {stat}
+              </p>
+            </div>
+          ))}
         </div>
-        <div className="relative h-80 w-full overflow-hidden rounded-xl md:ml-6">
+        </div>
+        <div className="relative overflow-hidden rounded-2xl shadow-lg ring-1 ring-zinc-200/70 md:ml-6">
+        <div className="relative h-80 w-full">
   {aboutImages.map((img, index) => (
     <img
       key={img}
@@ -193,42 +214,50 @@ export default function Page() {
       }`}
     />
   ))}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-900/15 via-zinc-900/[0.03] to-transparent" />
+</div>
 </div>
 </div>
       </section>
 
-      <section className="bg-white py-20 fade-up">
+      <section className="relative bg-white py-20 fade-up shadow-[inset_0_12px_24px_-12px_rgba(0,0,0,0.05)]">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+            Leistungsspektrum
+          </p>
+          <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
             Leistungen
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <article
                 key={service.title}
-                className="rounded-xl border border-zinc-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="rounded-xl border border-zinc-200 bg-white p-7 shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl md:p-8"
               >
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 text-lg text-zinc-700">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-zinc-100 text-xl text-zinc-700">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold">{service.title}</h3>
-                <p className="mt-3 leading-7 text-zinc-600">{service.text}</p>
+                <h3 className="text-xl font-semibold text-zinc-900">{service.title}</h3>
+                <p className="mt-3 leading-[1.75] text-zinc-600">{service.text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl bg-white px-6 py-16 fade-up">
-        <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+      <section className="fade-up relative bg-white py-16 shadow-[inset_0_10px_28px_-10px_rgba(0,0,0,0.06)]">
+        <div className="mx-auto max-w-6xl px-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+          Referenzen
+        </p>
+        <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
           Ausgewaehlte Projekte
         </h2>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {projects.map((project) => (
             <article
               key={project.title}
-              className="group overflow-hidden rounded-xl border border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="group overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -243,25 +272,29 @@ export default function Page() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold">{project.title}</h3>
-                <p className="mt-3 leading-7 text-zinc-600">{project.text}</p>
+                <p className="mt-3 leading-[1.75] text-zinc-600">{project.text}</p>
               </div>
             </article>
           ))}
         </div>
         <a
           href="/projekte"
-          className="mt-10 inline-flex rounded-md border border-zinc-300 bg-white px-6 py-3 text-sm font-medium text-zinc-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-400 hover:bg-zinc-100 hover:shadow-md"
+          className="mt-10 inline-flex rounded-full border border-zinc-300/90 bg-white px-7 py-3.5 text-sm font-medium text-zinc-800 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-zinc-400 hover:bg-zinc-50 hover:shadow-md"
         >
           Alle Projekte ansehen
         </a>
+        </div>
       </section>
 
-      <section className="bg-zinc-50 py-16 fade-up shadow-[0_-12px_30px_rgba(0,0,0,0.05)]">
+      <section className="relative bg-zinc-50 py-16 fade-up shadow-[0_-10px_36px_-10px_rgba(0,0,0,0.06)]">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+            Warum EKT
+          </p>
+          <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
             Ihre Vorteile
           </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
             {[
               "Zuverlaessig und termintreu",
               "Schnelle, saubere Montage",
@@ -270,17 +303,21 @@ export default function Page() {
             ].map((item) => (
               <div
                 key={item}
-                className="rounded-lg border border-zinc-200 bg-white px-5 py-4"
+                className="rounded-xl border border-zinc-200/90 bg-white px-5 py-4 shadow-sm"
               >
-                <p className="font-medium">{item}</p>
+                <p className="font-medium text-zinc-900">{item}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl bg-white px-6 py-16 fade-up">
-        <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+      <section className="fade-up bg-white py-16 shadow-[inset_0_10px_28px_-10px_rgba(0,0,0,0.05)]">
+        <div className="mx-auto max-w-6xl px-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+          Team
+        </p>
+        <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
           Unser Team
         </h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -301,15 +338,22 @@ export default function Page() {
             </article>
           ))}
         </div>
+        </div>
       </section>
 
-      <section id="kontakt" className="bg-zinc-50 py-16 fade-up">
+      <section
+        id="kontakt"
+        className="fade-up relative bg-white py-16 shadow-[inset_0_10px_28px_-10px_rgba(0,0,0,0.05)]"
+      >
         <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              Direkter Draht
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
               Kontakt
             </h2>
-            <div className="mt-6 space-y-3 text-zinc-700">
+            <div className="mt-6 space-y-4 text-zinc-700">
               <p>
                 <span className="font-medium text-zinc-900">Telefon:</span> +49
                 251 1234567
@@ -325,7 +369,7 @@ export default function Page() {
             </div>
           </div>
 
-          <form className="rounded-xl border border-zinc-200 bg-white p-6">
+          <form className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
             <div className="space-y-4">
               <div>
                 <label
@@ -375,7 +419,7 @@ export default function Page() {
             </div>
             <button
               type="submit"
-              className="mt-5 inline-flex rounded-md bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-lg"
+              className="mt-6 inline-flex rounded-full bg-zinc-900 px-7 py-3.5 text-sm font-medium text-white shadow-md transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-lg"
             >
               Nachricht senden
             </button>
