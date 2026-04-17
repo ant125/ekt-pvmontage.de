@@ -256,7 +256,7 @@ export default function Page() {
         </a>
       </section>
 
-      <section className="bg-zinc-50 py-16 fade-up">
+      <section className="bg-zinc-50 py-16 fade-up shadow-[0_-12px_30px_rgba(0,0,0,0.05)]">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
             Ihre Vorteile
