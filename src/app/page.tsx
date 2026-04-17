@@ -15,7 +15,7 @@ export default function Page() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentAboutImage((prev) => (prev + 1) % 2);
-    }, 3000);
+    }, 6000);
   
     return () => clearInterval(interval);
   }, []);
@@ -157,7 +157,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-10 bg-white px-6 py-16 md:grid-cols-2 md:items-center fade-up">
+      <section className="fade-up bg-zinc-50 py-20">
+  <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-2 md:items-center">
         <div>
         <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
   Über mich
@@ -193,6 +194,7 @@ export default function Page() {
     />
   ))}
   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+</div>
 </div>
       </section>
 
