@@ -1,10 +1,10 @@
 export default function Page() {
   const heroImageSettings = {
-    scale: 0.7, // размер
-    xMobile: 50,  // сдвиг по X на мобилке
-    yMobile: 350,  // сдвиг по Y на мобилке
+    scale: 0.6, // размер
+    xMobile: -50,  // сдвиг по X на мобилке
+    yMobile: 420,  // сдвиг по Y на мобилке
     xDesktop: 180, // сдвиг по X на десктопе
-    yDesktop: 110,   // сдвиг по Y на десктопе
+    yDesktop: 90,   // сдвиг по Y на десктопе
   };
   const services = [
     {
