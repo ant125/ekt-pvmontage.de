@@ -1,9 +1,9 @@
 export default function Page() {
   const heroImageSettings = {
-    scale: 0.8, // размер
+    scale: 0.7, // размер
     xMobile: 0,  // сдвиг по X на мобилке
-    yMobile: -150,  // сдвиг по Y на мобилке
-    xDesktop: 220, // сдвиг по X на десктопе
+    yMobile: -350,  // сдвиг по Y на мобилке
+    xDesktop: 180, // сдвиг по X на десктопе
     yDesktop: -90,   // сдвиг по Y на десктопе
   };
   const services = [
@@ -119,7 +119,7 @@ export default function Page() {
             </a>
           </div>
           <div className="relative z-10 -mt-10 flex min-h-[150px] w-full min-w-0 items-end justify-center md:mt-0 md:min-h-0 md:h-full md:justify-end md:pl-3 md:pr-0 md:[margin-right:calc(-1*max(0px,(100vw-72rem)/2))] md:[width:calc(100%+max(0px,(100vw-72rem)/3))]">
-          <div className="relative h-[260px] w-full overflow-hidden md:h-[520px] lg:h-[600px] border-2 border-red-500">
+          <div className="relative h-[260px] w-full overflow-hidden md:h-[520px] lg:h-[600px]">
     <img
       src="/hero-worker.png"
       alt="Besik Gigauri – Photovoltaik-Montage"
