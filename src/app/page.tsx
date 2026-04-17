@@ -1,6 +1,7 @@
 export default function Page() {
   const heroImageSettings = {
-    scale: 0.6, // размер
+    scaleMobile: 0.4, // размер на мобилке
+    scaleDesktop: 0.6, // размер на десктопе
     xMobile: -50,  // сдвиг по X на мобилке
     yMobile: 340,  // сдвиг по Y на мобилке было 330
     xDesktop: 120, // сдвиг по X на десктопе
@@ -125,7 +126,7 @@ export default function Page() {
       alt="Besik Gigauri – Photovoltaik-Montage"
      className="absolute bottom-0 left-1/2 h-auto w-auto max-w-none md:hidden"
       style={{
-        transform: `translate(calc(-50% + ${heroImageSettings.xMobile}px), ${heroImageSettings.yMobile}px) scale(${heroImageSettings.scale})`,
+        transform: `translate(calc(-50% + ${heroImageSettings.xMobile}px), ${heroImageSettings.yMobile}px) scale(${heroImageSettings.scaleMobile})`,
         transformOrigin: "bottom center",
       }}
     />
@@ -135,7 +136,7 @@ export default function Page() {
       alt="Besik Gigauri – Photovoltaik-Montage"
       className="absolute bottom-0 right-0 hidden h-auto w-auto max-w-none md:block"
       style={{
-        transform: `translate(${heroImageSettings.xDesktop}px, ${heroImageSettings.yDesktop}px) scale(${heroImageSettings.scale})`,
+        transform: `translate(${heroImageSettings.xDesktop}px, ${heroImageSettings.yDesktop}px) scale(${heroImageSettings.scaleDesktop})`,
         transformOrigin: "bottom right",
       }}
     />
