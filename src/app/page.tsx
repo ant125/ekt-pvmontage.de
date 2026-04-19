@@ -1,5 +1,7 @@
 "use client";
-import { getServiceIcon } from "@/lib/icons"
+import ProjectCard from "@/components/projects/ProjectCard";
+import { getServiceIcon } from "@/lib/icons";
+import { projects } from "@/lib/projects";
 import { useEffect, useState } from "react";
 export default function Page() {
   const heroImageSettings = {
@@ -52,24 +54,6 @@ export default function Page() {
       text: "Fachgerechte Demontage alter Anlagen sowie Reparatur und Austausch defekter Komponenten.",
     },
   ]
-
-  const projects = [
-    {
-      img: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=900&q=80",
-      title: "Einfamilienhaus in Muenster",
-      text: "8,5 kWp Dachanlage mit optimierter Ausrichtung fuer hohe Eigenversorgung.",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80",
-      title: "Gewerbehalle in Osnabrueck",
-      text: "Grossflaechenmontage inkl. Unterkonstruktion und abgestimmtem Zeitplan.",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80",
-      title: "Mehrfamilienhaus in Bielefeld",
-      text: "Effiziente Dachbelegung mit Fokus auf Wirtschaftlichkeit und Wartungszugang.",
-    },
-  ];
 
   const trustPoints = [
     "5+ Jahre Erfahrung",
@@ -268,31 +252,8 @@ export default function Page() {
           Ausgewaehlte Projekte
         </h2>
         <div className="mt-12 grid gap-7 md:grid-cols-3">
-          {projects.map((project) => (
-            <article
-              key={project.title}
-              className="group overflow-hidden rounded-2xl border border-zinc-200/80 bg-white shadow-[0_6px_30px_-8px_rgba(15,23,42,0.09)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-zinc-300/90 hover:shadow-[0_14px_44px_-12px_rgba(15,23,42,0.13)]"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.img}
-                  alt={project.title}
-                  className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <p className="absolute bottom-3 left-4 right-4 text-sm font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  Referenzprojekt
-                </p>
-              </div>
-              <div className="p-6 md:p-7">
-                <h3 className="text-lg font-semibold tracking-tight text-zinc-900 sm:text-xl">
-                  {project.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-600 sm:text-[0.9375rem] sm:leading-relaxed">
-                  {project.text}
-                </p>
-              </div>
-            </article>
+          {projects.slice(0, 3).map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
         <a
