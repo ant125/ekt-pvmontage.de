@@ -183,7 +183,7 @@ export default function Page() {
         </div>
       </div>
 
-      <section className="fade-up relative mt-6 bg-zinc-50 py-20 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.06)] md:mt-8">
+      <section className="fade-up relative mt-6 bg-zinc-50 py-16 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.06)] md:mt-8 md:py-20">
   <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:items-center md:gap-16 lg:gap-20">
         <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
@@ -210,18 +210,6 @@ export default function Page() {
 <p className="mt-6 text-base leading-[1.75] text-zinc-600">
   Weiter unten finden Sie detaillierte Informationen zu meinen Leistungen.
 </p>
-        <div className="mt-11 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-          {trustPoints.map((stat) => (
-            <div
-              key={stat}
-              className="rounded-2xl border border-zinc-100 bg-white px-4 py-4 shadow-[0_2px_14px_-3px_rgba(15,23,42,0.06)] sm:px-5 sm:py-4"
-            >
-              <p className="text-xs font-semibold leading-snug tracking-tight text-zinc-800 sm:text-sm">
-                {stat}
-              </p>
-            </div>
-          ))}
-        </div>
         </div>
         <div className="relative overflow-hidden rounded-2xl shadow-[0_16px_48px_-12px_rgba(15,23,42,0.14)] ring-1 ring-zinc-100/90 md:ml-6">
         <div className="relative h-80 w-full">
