@@ -2,7 +2,6 @@ import {
     Circle,
     Sun,
     Wrench,
-    Sparkles,
     Building,
     Home,
     Check,
@@ -10,20 +9,16 @@ import {
     Ruler,
     MessageCircle,
     Settings,
+    Droplets,
   } from "lucide-react"
   
   export const iconsMap = {
-    solar: Sun,
-    repair: Wrench,
-    cleaning: Sparkles,
-    building: Building,
-    construction: Hammer,
-    check: Check,
-    home: Home,
-    ruler: Ruler,
-    chat: MessageCircle,
-    settings: Settings,
-    tool: Hammer,
+    solar: Sun,           // PV
+    ruler: Ruler,         // калькуляция
+    chat: MessageCircle,  // консультация
+    cleaning: Droplets,   // чистка крыши
+    settings: Settings,   // сервис
+    tool: Hammer,         // демонтаж / монтаж
   }
   
   export function getServiceIcon(key?: string) {

@@ -37,7 +37,7 @@ export default function Page() {
       text: "Individuelle Beratung direkt vor Ort – abgestimmt auf Ihr Dach, Ihren Energiebedarf und Ihr Budget.",
     },
     {
-      icon: "sparkles",
+      icon: "cleaning",
       title: "Dachreinigung",
       text: "Professionelle Reinigung von Dächern zur Vorbereitung für Montage oder zur langfristigen Werterhaltung.",
     },
