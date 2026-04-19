@@ -32,6 +32,10 @@ export default async function Page({ searchParams }: PageProps) {
           Alle Projekte
         </h1>
 
+        <p className="mt-3 max-w-xl text-zinc-600">
+          Ein Überblick unserer abgeschlossenen Arbeiten und Projekte.
+        </p>
+
         <div className="mt-12 grid gap-7 md:grid-cols-3">
           {currentProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />

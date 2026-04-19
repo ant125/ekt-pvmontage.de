@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ProjectCard from "@/components/projects/ProjectCard";
 import { projects } from "@/lib/projects";
 
 type PageProps = {
@@ -33,7 +34,16 @@ export default async function ProjectPage({ params }: PageProps) {
   return (
     <main className="bg-white text-zinc-800">
       <div className="mx-auto max-w-3xl px-6 py-20">
-        <h1 className="text-3xl font-semibold text-zinc-900">{project.title}</h1>
+        <Link
+          href="/projekte"
+          className="text-sm text-zinc-500 hover:text-zinc-900"
+        >
+          ← Alle Projekte
+        </Link>
+
+        <h1 className="mt-6 text-3xl font-semibold text-zinc-900">
+          {project.title}
+        </h1>
 
         {(project.location || project.year) && (
           <p className="mt-3 text-zinc-500">
@@ -64,6 +74,18 @@ export default async function ProjectPage({ params }: PageProps) {
           ))}
         </div>
 
+        <h3 className="mt-16 text-xl font-semibold text-zinc-900">
+          Weitere Projekte
+        </h3>
+        <div className="mt-6 grid gap-6 sm:grid-cols-3">
+          {projects
+            .filter((p) => p.id !== project.id)
+            .slice(0, 3)
+            .map((p) => (
+              <ProjectCard key={p.id} project={p} />
+            ))}
+        </div>
+
         <div className="mt-16 flex justify-between text-sm">
           {prevProject ? (
             <Link
@@ -86,6 +108,21 @@ export default async function ProjectPage({ params }: PageProps) {
             <div />
           )}
         </div>
+
+        <section className="mt-20 rounded-2xl border border-zinc-200 bg-zinc-50 p-10 text-center">
+          <h2 className="text-2xl font-semibold text-zinc-900">
+            Starten Sie Ihr Projekt mit uns
+          </h2>
+          <p className="mt-4 text-zinc-600">
+            Lassen Sie uns Ihr Projekt gemeinsam umsetzen.
+          </p>
+          <a
+            href="/#kontakt"
+            className="mt-6 inline-flex rounded-full bg-zinc-900 px-6 py-3 text-white"
+          >
+            Jetzt anfragen
+          </a>
+        </section>
       </div>
     </main>
   );
