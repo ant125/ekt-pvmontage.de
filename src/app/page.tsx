@@ -24,32 +24,32 @@ export default function Page() {
     {
       icon: "solar",
       title: "PV-Montage",
-      text: "...",
+      text: "Fachgerechte Montage von Solarmodulen auf Schraeg- und Flachdaechern.",
     },
     {
       icon: "construction",
       title: "Unterkonstruktion",
-      text: "...",
+      text: "Stabile und dauerhafte Systeme fuer sichere Befestigung bei jedem Dachtyp.",
     },
     {
       icon: "check",
       title: "Wartung & Service",
-      text: "...",
+      text: "Regelmaessige Pruefungen fuer hohe Leistung und lange Lebensdauer der Anlage.",
     },
     {
       icon: "repair",
       title: "Repowering",
-      text: "...",
+      text: "Modernisierung bestehender Anlagen mit effizienteren Komponenten.",
     },
     {
       icon: "building",
       title: "Gewerbeprojekte",
-      text: "...",
+      text: "Skalierbare Loesungen fuer Hallen, Buerogebaeude und Industrieflaechen.",
     },
     {
       icon: "home",
       title: "Beratung vor Ort",
-      text: "...",
+      text: "Individuelle Planung abgestimmt auf Gebaeude, Budget und Energiebedarf.",
     },
   ]
 

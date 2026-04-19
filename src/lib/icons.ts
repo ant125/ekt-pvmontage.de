@@ -4,6 +4,9 @@ import {
     Wrench,
     Sparkles,
     Building,
+    Home,
+    Check,
+    Hammer,
   } from "lucide-react"
   
   export const iconsMap = {
@@ -11,6 +14,9 @@ import {
     repair: Wrench,
     cleaning: Sparkles,
     building: Building,
+    construction: Hammer,
+    check: Check,
+    home: Home,
   }
   
   export function getServiceIcon(key?: string) {
