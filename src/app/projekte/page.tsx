@@ -23,8 +23,14 @@ export default async function Page({ searchParams }: PageProps) {
 
   return (
     <main className="bg-white text-zinc-800">
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <nav className="text-sm text-zinc-500">
+          <Link href="/">Startseite</Link>
+          <span className="mx-2">/</span>
+          <span className="text-zinc-900">Projekte</span>
+        </nav>
+
+        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
           Referenzen
         </p>
 
@@ -64,7 +70,7 @@ export default async function Page({ searchParams }: PageProps) {
           )}
         </div>
 
-        <section className="mt-20 rounded-2xl border border-zinc-200 bg-zinc-50 p-10 text-center">
+        <section className="mt-16 rounded-2xl border border-zinc-200 bg-zinc-50 p-8 text-center md:mt-20 md:p-10">
           <h2 className="text-2xl font-semibold text-zinc-900">
             Starten Sie Ihr Projekt mit uns
           </h2>

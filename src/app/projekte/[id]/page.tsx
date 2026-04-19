@@ -14,8 +14,13 @@ export default async function ProjectPage({ params }: PageProps) {
   if (!project) {
     return (
       <main className="bg-white text-zinc-800">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-zinc-600">Projekt nicht gefunden</p>
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <nav className="text-sm text-zinc-500">
+            <Link href="/">Startseite</Link>
+            <span className="mx-2">/</span>
+            <Link href="/projekte">Projekte</Link>
+          </nav>
+          <p className="mt-8 text-zinc-600">Projekt nicht gefunden</p>
           <Link
             href="/projekte"
             className="mt-4 inline-block text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4"
@@ -33,7 +38,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <main className="bg-white text-zinc-800">
-      <div className="mx-auto max-w-3xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <nav className="text-sm text-zinc-500">
           <Link href="/">Startseite</Link>
           <span className="mx-2">/</span>
@@ -75,7 +80,7 @@ export default async function ProjectPage({ params }: PageProps) {
           ))}
         </div>
 
-        <div className="mt-12 flex justify-between text-sm text-zinc-600">
+        <div className="mt-10 mb-12 flex justify-between border-t border-zinc-200 pt-10 text-sm text-zinc-600">
           {prevProject ? (
             <Link
               href={`/projekte/${prevProject.id}`}
@@ -98,10 +103,10 @@ export default async function ProjectPage({ params }: PageProps) {
           )}
         </div>
 
-        <h3 className="mt-16 text-lg font-medium text-zinc-700">
+        <h3 className="mt-2 text-sm font-medium text-zinc-600">
           Weitere Projekte
         </h3>
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
           {projects
             .filter((p) => p.id !== project.id)
             .slice(0, 3)
@@ -115,7 +120,7 @@ export default async function ProjectPage({ params }: PageProps) {
             ))}
         </div>
 
-        <section className="mt-20 rounded-2xl border border-zinc-200 bg-zinc-50 p-10 text-center">
+        <section className="mt-14 rounded-2xl border border-zinc-200 bg-zinc-50 p-8 text-center md:mt-16 md:p-10">
           <h2 className="text-2xl font-semibold text-zinc-900">
             Starten Sie Ihr Projekt mit uns
           </h2>
@@ -129,14 +134,6 @@ export default async function ProjectPage({ params }: PageProps) {
             Jetzt anfragen
           </a>
         </section>
-
-        <footer className="mt-20 flex justify-between border-t border-zinc-200 pt-6 text-sm text-zinc-500">
-          <span>© 2026 EKP PV Montage</span>
-          <div className="flex gap-4">
-            <Link href="/">Startseite</Link>
-            <Link href="/impressum">Impressum</Link>
-          </div>
-        </footer>
       </div>
     </main>
   );
