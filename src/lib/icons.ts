@@ -7,6 +7,9 @@ import {
     Home,
     Check,
     Hammer,
+    Ruler,
+    MessageCircle,
+    Settings,
   } from "lucide-react"
   
   export const iconsMap = {
@@ -17,6 +20,10 @@ import {
     construction: Hammer,
     check: Check,
     home: Home,
+    ruler: Ruler,
+    chat: MessageCircle,
+    settings: Settings,
+    tool: Hammer,
   }
   
   export function getServiceIcon(key?: string) {
