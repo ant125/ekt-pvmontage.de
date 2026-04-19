@@ -34,14 +34,15 @@ export default async function ProjectPage({ params }: PageProps) {
   return (
     <main className="bg-white text-zinc-800">
       <div className="mx-auto max-w-3xl px-6 py-20">
-        <Link
-          href="/projekte"
-          className="text-sm text-zinc-500 hover:text-zinc-900"
-        >
-          ← Alle Projekte
-        </Link>
+        <nav className="text-sm text-zinc-500">
+          <Link href="/">Startseite</Link>
+          <span className="mx-2">/</span>
+          <Link href="/projekte">Projekte</Link>
+          <span className="mx-2">/</span>
+          <span className="text-zinc-900">{project.title}</span>
+        </nav>
 
-        <h1 className="mt-6 text-3xl font-semibold text-zinc-900">
+        <h1 className="mt-6 mb-2 text-3xl font-semibold text-zinc-900">
           {project.title}
         </h1>
 
@@ -74,23 +75,11 @@ export default async function ProjectPage({ params }: PageProps) {
           ))}
         </div>
 
-        <h3 className="mt-16 text-xl font-semibold text-zinc-900">
-          Weitere Projekte
-        </h3>
-        <div className="mt-6 grid gap-6 sm:grid-cols-3">
-          {projects
-            .filter((p) => p.id !== project.id)
-            .slice(0, 3)
-            .map((p) => (
-              <ProjectCard key={p.id} project={p} />
-            ))}
-        </div>
-
-        <div className="mt-16 flex justify-between text-sm">
+        <div className="mt-12 flex justify-between text-sm text-zinc-600">
           {prevProject ? (
             <Link
               href={`/projekte/${prevProject.id}`}
-              className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition hover:decoration-zinc-900"
+              className="font-medium text-zinc-600 underline decoration-zinc-300 underline-offset-4 transition hover:text-zinc-900 hover:decoration-zinc-900"
             >
               ← Vorheriges Projekt
             </Link>
@@ -100,13 +89,30 @@ export default async function ProjectPage({ params }: PageProps) {
           {nextProject ? (
             <Link
               href={`/projekte/${nextProject.id}`}
-              className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition hover:decoration-zinc-900"
+              className="font-medium text-zinc-600 underline decoration-zinc-300 underline-offset-4 transition hover:text-zinc-900 hover:decoration-zinc-900"
             >
               Nächstes Projekt →
             </Link>
           ) : (
             <div />
           )}
+        </div>
+
+        <h3 className="mt-16 text-lg font-medium text-zinc-700">
+          Weitere Projekte
+        </h3>
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          {projects
+            .filter((p) => p.id !== project.id)
+            .slice(0, 3)
+            .map((p) => (
+              <div
+                key={p.id}
+                className="opacity-90 transition hover:opacity-100"
+              >
+                <ProjectCard project={p} />
+              </div>
+            ))}
         </div>
 
         <section className="mt-20 rounded-2xl border border-zinc-200 bg-zinc-50 p-10 text-center">
@@ -123,6 +129,14 @@ export default async function ProjectPage({ params }: PageProps) {
             Jetzt anfragen
           </a>
         </section>
+
+        <footer className="mt-20 flex justify-between border-t border-zinc-200 pt-6 text-sm text-zinc-500">
+          <span>© 2026 EKP PV Montage</span>
+          <div className="flex gap-4">
+            <Link href="/">Startseite</Link>
+            <Link href="/impressum">Impressum</Link>
+          </div>
+        </footer>
       </div>
     </main>
   );
