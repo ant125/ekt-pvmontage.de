@@ -24,32 +24,32 @@ export default function Page() {
     {
       icon: "solar",
       title: "PV-Montage",
-      text: "Fachgerechte Montage von Solarmodulen auf Schraeg- und Flachdaechern.",
+      text: "Fachgerechte Montage von Photovoltaikanlagen auf Schräg- und Flachdächern für private und gewerbliche Kunden.",
     },
     {
-      icon: "construction",
-      title: "Unterkonstruktion",
-      text: "Stabile und dauerhafte Systeme fuer sichere Befestigung bei jedem Dachtyp.",
+      icon: "ruler",
+      title: "Kalkulation",
+      text: "Exakte Berechnung aller benötigten Materialien und Komponenten für Ihr Projekt – effizient und wirtschaftlich.",
     },
     {
-      icon: "check",
+      icon: "chat",
+      title: "Beratung",
+      text: "Individuelle Beratung direkt vor Ort – abgestimmt auf Ihr Dach, Ihren Energiebedarf und Ihr Budget.",
+    },
+    {
+      icon: "sparkles",
+      title: "Dachreinigung",
+      text: "Professionelle Reinigung von Dächern zur Vorbereitung für Montage oder zur langfristigen Werterhaltung.",
+    },
+    {
+      icon: "settings",
       title: "Wartung & Service",
-      text: "Regelmaessige Pruefungen fuer hohe Leistung und lange Lebensdauer der Anlage.",
+      text: "Regelmäßige Wartung und Kontrolle Ihrer Anlage für maximale Leistung, Sicherheit und Lebensdauer.",
     },
     {
-      icon: "repair",
-      title: "Repowering",
-      text: "Modernisierung bestehender Anlagen mit effizienteren Komponenten.",
-    },
-    {
-      icon: "building",
-      title: "Gewerbeprojekte",
-      text: "Skalierbare Loesungen fuer Hallen, Buerogebaeude und Industrieflaechen.",
-    },
-    {
-      icon: "home",
-      title: "Beratung vor Ort",
-      text: "Individuelle Planung abgestimmt auf Gebaeude, Budget und Energiebedarf.",
+      icon: "tool",
+      title: "Demontage & Reparatur",
+      text: "Fachgerechte Demontage alter Anlagen sowie Reparatur und Austausch defekter Komponenten.",
     },
   ]
 
