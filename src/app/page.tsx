@@ -1,3 +1,4 @@
+import { getServiceIcon } from "@/lib/icons"
 "use client";
 import { useEffect, useState } from "react";
 export default function Page() {
@@ -21,36 +22,36 @@ export default function Page() {
   }, []);
   const services = [
     {
-      icon: "☀",
+      icon: "solar",
       title: "PV-Montage",
-      text: "Fachgerechte Montage von Solarmodulen auf Schraeg- und Flachdaechern.",
+      text: "...",
     },
     {
-      icon: "▦",
+      icon: "construction",
       title: "Unterkonstruktion",
-      text: "Stabile und dauerhafte Systeme fuer sichere Befestigung bei jedem Dachtyp.",
+      text: "...",
     },
     {
-      icon: "✓",
+      icon: "check",
       title: "Wartung & Service",
-      text: "Regelmaessige Pruefungen fuer hohe Leistung und lange Lebensdauer der Anlage.",
+      text: "...",
     },
     {
-      icon: "↻",
+      icon: "repair",
       title: "Repowering",
-      text: "Modernisierung bestehender Anlagen mit effizienteren Komponenten.",
+      text: "...",
     },
     {
-      icon: "▣",
+      icon: "building",
       title: "Gewerbeprojekte",
-      text: "Skalierbare Loesungen fuer Hallen, Buerogebaeude und Industrieflaechen.",
+      text: "...",
     },
     {
-      icon: "⌂",
+      icon: "home",
       title: "Beratung vor Ort",
-      text: "Individuelle Planung abgestimmt auf Gebaeude, Budget und Energiebedarf.",
+      text: "...",
     },
-  ];
+  ]
 
   const projects = [
     {
@@ -238,18 +239,21 @@ export default function Page() {
             Leistungen
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
+            {services.map((service) => {const Icon = getServiceIcon(service.icon)
+            return (
+          
               <article
                 key={service.title}
                 className="group rounded-2xl border border-zinc-200/90 bg-white p-8 shadow-[0_4px_26px_-6px_rgba(15,23,42,0.09)] transition-all duration-300 ease-out hover:-translate-y-[3px] hover:border-zinc-300/95 hover:shadow-[0_18px_48px_-14px_rgba(15,23,42,0.14)] md:p-9"
               >
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-zinc-100 text-2xl text-zinc-700 ring-1 ring-zinc-200/70">
-                  {service.icon}
-                </div>
+                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-zinc-100 ring-1 ring-zinc-200/70">
+  <Icon className="w-6 h-6 text-zinc-600" />
+</div>
                 <h3 className="text-xl font-semibold tracking-tight text-zinc-900">{service.title}</h3>
                 <p className="mt-3 leading-[1.75] text-zinc-600">{service.text}</p>
               </article>
-            ))}
+             )
+            })}
           </div>
         </div>
       </section>
