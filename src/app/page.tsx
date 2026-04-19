@@ -1,5 +1,5 @@
-import { getServiceIcon } from "@/lib/icons"
 "use client";
+import { getServiceIcon } from "@/lib/icons"
 import { useEffect, useState } from "react";
 export default function Page() {
   const heroImageSettings = {
