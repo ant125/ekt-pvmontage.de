@@ -9,48 +9,139 @@ export type Project = {
   year?: string;
 };
 
-const imgMuenster =
-  "https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=900&q=80";
-const imgOsnabrueck =
-  "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80";
-const imgBielefeld =
-  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80";
-
 export const projects: Project[] = [
   {
-    id: "muenster",
-    title: "Einfamilienhaus in Muenster",
-    shortText:
-      "8,5 kWp Dachanlage mit optimierter Ausrichtung fuer hohe Eigenversorgung.",
+    id: "projekt-1",
+    title: "Photovoltaik Anlage Einfamilienhaus",
+    shortText: "PV-Anlage für maximale Eigenversorgung.",
     fullText:
-      "Fuer dieses Einfamilienhaus in Muenster haben wir eine 8,5 kWp Photovoltaikanlage auf dem Satteldach montiert. Die Module wurden so ausgerichtet, dass die Tageszeiten mit dem Verbrauch im Haushalt gut zusammenpassen und ein hoher Anteil Solarstrom direkt vor Ort genutzt werden kann.\n\nDie Unterkonstruktion wurde statisch abgestimmt; Kabelwege und Wechselrichterplatz wurden sauber und wartungsfreundlich geplant.",
-    coverImage: imgMuenster,
-    images: [imgMuenster, imgMuenster, imgMuenster],
-    location: "Muenster",
-    year: "2023",
-  },
-  {
-    id: "osnabrueck",
-    title: "Gewerbehalle in Osnabrueck",
-    shortText:
-      "Grossflaechenmontage inkl. Unterkonstruktion und abgestimmtem Zeitplan.",
-    fullText:
-      "Auf dem Flachdach einer Gewerbehalle in Osnabrueck wurde eine Grossanlage inklusive Unterkonstruktion und Abdichtungsdetails montiert. Der Ablauf war eng mit dem Betrieb abgestimmt, damit Lieferungen und Zugaenge kurzfristig nutzbar blieben.\n\nNach Abschluss wurden alle relevanten Bereiche aufgeraeumt uebergeben; die Anlage ist fuer regelmaessige Kontrolle und Service gut erreichbar.",
-    coverImage: imgOsnabrueck,
-    images: [imgOsnabrueck, imgOsnabrueck, imgOsnabrueck],
-    location: "Osnabrueck",
+      "Installation einer modernen Photovoltaikanlage auf einem Einfamilienhaus. Fokus auf Effizienz und langfristige Nutzung.",
+    coverImage: "/projects/projekt-1/cover.jpg",
+    images: [
+      "/projects/projekt-1/img1.jpg",
+      "/projects/projekt-1/img2.jpg",
+      "/projects/projekt-1/img3.jpg",
+    ],
+    location: "Augsburg",
     year: "2024",
   },
   {
-    id: "bielefeld",
-    title: "Mehrfamilienhaus in Bielefeld",
-    shortText:
-      "Effiziente Dachbelegung mit Fokus auf Wirtschaftlichkeit und Wartungszugang.",
+    id: "projekt-2",
+    title: "Gewerbehalle Montage",
+    shortText: "Großflächen PV-Montage für Gewerbe.",
     fullText:
-      "Bei diesem Mehrfamilienhaus in Bielefeld lag der Fokus auf einer effizienten Belegung der Dachflaeche und einem klaren Wirtschaftlichkeitsbild fuer die Eigentuemer. Die Montage erfolgte so, dass Wartung und eventuelle Erweiterungen ohne grosse Eingriffe moeglich bleiben.\n\nKabel und Wechselrichter wurden zentral und dennoch zugaenglich platziert; die Flaeche wurde ohne ueberfluessige Verschnittkanten genutzt.",
-    coverImage: imgBielefeld,
-    images: [imgBielefeld, imgBielefeld, imgBielefeld],
-    location: "Bielefeld",
+      "Montage einer großflächigen Photovoltaikanlage auf einer Industriehalle inklusive Unterkonstruktion.",
+    coverImage: "/projects/projekt-2/cover.jpg",
+    images: [
+      "/projects/projekt-2/img1.jpg",
+      "/projects/projekt-2/img2.jpg",
+      "/projects/projekt-2/img3.jpg",
+    ],
+    location: "München",
     year: "2023",
+  },
+  {
+    id: "projekt-3",
+    title: "Dachreinigung & Vorbereitung",
+    shortText: "Professionelle Dachreinigung vor Installation.",
+    fullText:
+      "Reinigung und Vorbereitung eines Dachs für eine neue Photovoltaikanlage.",
+    coverImage: "/projects/projekt-3/cover.jpg",
+    images: [
+      "/projects/projekt-3/img1.jpg",
+      "/projects/projekt-3/img2.jpg",
+      "/projects/projekt-3/img3.jpg",
+    ],
+    location: "Donauwörth",
+    year: "2024",
+  },
+  {
+    id: "projekt-4",
+    title: "PV-Anlage Mehrfamilienhaus",
+    shortText: "Effiziente Lösung für mehrere Parteien.",
+    fullText:
+      "Installation einer Photovoltaikanlage für ein Mehrfamilienhaus mit optimierter Verteilung.",
+    coverImage: "/projects/projekt-4/cover.jpg",
+    images: [
+      "/projects/projekt-4/img1.jpg",
+      "/projects/projekt-4/img2.jpg",
+      "/projects/projekt-4/img3.jpg",
+    ],
+    location: "Ulm",
+    year: "2022",
+  },
+  {
+    id: "projekt-5",
+    title: "Industrieprojekt PV",
+    shortText: "Großanlage für Industriegebäude.",
+    fullText:
+      "Planung und Umsetzung einer PV-Anlage auf einem Industriekomplex.",
+    coverImage: "/projects/projekt-5/cover.jpg",
+    images: [
+      "/projects/projekt-5/img1.jpg",
+      "/projects/projekt-5/img2.jpg",
+      "/projects/projekt-5/img3.jpg",
+    ],
+    location: "Stuttgart",
+    year: "2023",
+  },
+  {
+    id: "projekt-6",
+    title: "Dachsanierung & PV",
+    shortText: "Sanierung und Installation kombiniert.",
+    fullText:
+      "Komplette Dachsanierung inklusive anschließender PV-Montage.",
+    coverImage: "/projects/projekt-6/cover.jpg",
+    images: [
+      "/projects/projekt-6/img1.jpg",
+      "/projects/projekt-6/img2.jpg",
+      "/projects/projekt-6/img3.jpg",
+    ],
+    location: "Augsburg",
+    year: "2024",
+  },
+  {
+    id: "projekt-7",
+    title: "Privathaus PV-Anlage",
+    shortText: "Individuelle Lösung für Einfamilienhaus.",
+    fullText: "Maßgeschneiderte Photovoltaikanlage für privaten Haushalt.",
+    coverImage: "/projects/projekt-7/cover.jpg",
+    images: [
+      "/projects/projekt-7/img1.jpg",
+      "/projects/projekt-7/img2.jpg",
+      "/projects/projekt-7/img3.jpg",
+    ],
+    location: "Ingolstadt",
+    year: "2022",
+  },
+  {
+    id: "projekt-8",
+    title: "Gewerbliche Dachanlage",
+    shortText: "Optimierte Energie für Unternehmen.",
+    fullText:
+      "PV-Lösung für gewerblichen Kunden mit Fokus auf Energieeinsparung.",
+    coverImage: "/projects/projekt-8/cover.jpg",
+    images: [
+      "/projects/projekt-8/img1.jpg",
+      "/projects/projekt-8/img2.jpg",
+      "/projects/projekt-8/img3.jpg",
+    ],
+    location: "Nürnberg",
+    year: "2023",
+  },
+  {
+    id: "projekt-9",
+    title: "Solarpark Installation",
+    shortText: "Großprojekt im Bereich Solarenergie.",
+    fullText:
+      "Installation eines kleinen Solarparks für nachhaltige Energiegewinnung.",
+    coverImage: "/projects/projekt-9/cover.jpg",
+    images: [
+      "/projects/projekt-9/img1.jpg",
+      "/projects/projekt-9/img2.jpg",
+      "/projects/projekt-9/img3.jpg",
+    ],
+    location: "Bayern",
+    year: "2024",
   },
 ];
