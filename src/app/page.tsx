@@ -244,11 +244,12 @@ export default function Page() {
           
               <article
                 key={service.title}
-                className="group rounded-2xl border border-zinc-200/90 bg-white p-8 shadow-[0_4px_26px_-6px_rgba(15,23,42,0.09)] transition-all duration-300 ease-out hover:-translate-y-[3px] hover:border-zinc-300/95 hover:shadow-[0_18px_48px_-14px_rgba(15,23,42,0.14)] md:p-9"
+                className="group relative overflow-hidden rounded-2xl border border-zinc-200/90 bg-white p-8 shadow-[0_4px_26px_-6px_rgba(15,23,42,0.09)] transition-all duration-300 ease-out hover:-translate-y-[3px] hover:border-zinc-300/95 hover:shadow-[0_18px_48px_-14px_rgba(15,23,42,0.14)] md:p-9"
               >
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-zinc-100 ring-1 ring-zinc-200/70">
-  <Icon className="w-6 h-6 text-zinc-600" />
-</div>
+                <div className="absolute top-0 left-0 h-[2px] w-0 bg-zinc-900 transition-all duration-300 group-hover:w-full" />
+                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-zinc-100/80 backdrop-blur ring-1 ring-zinc-200/70 transition-all duration-300 group-hover:bg-zinc-900">
+                  <Icon className="w-6 h-6 text-zinc-600 transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
+                </div>
                 <h3 className="text-xl font-semibold tracking-tight text-zinc-900">{service.title}</h3>
                 <p className="mt-3 leading-[1.75] text-zinc-600">{service.text}</p>
               </article>
