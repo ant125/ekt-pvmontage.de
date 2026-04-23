@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 import ProjectCard from "@/components/projects/ProjectCard";
+import Container from "@/components/ui/Container";
 
 const PROJECTS_PER_PAGE = 6;
 
@@ -23,7 +24,8 @@ export default async function Page({ searchParams }: PageProps) {
 
   return (
     <main className="bg-white text-zinc-800">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <Container>
+        <div className="py-16 md:py-20">
         <nav className="text-sm text-zinc-500">
           <Link href="/">Startseite</Link>
           <span className="mx-2">/</span>
@@ -85,7 +87,8 @@ export default async function Page({ searchParams }: PageProps) {
             Jetzt anfragen
           </a>
         </section>
-      </div>
+        </div>
+      </Container>
     </main>
   );
 }

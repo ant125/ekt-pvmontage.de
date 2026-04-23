@@ -1,7 +1,12 @@
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
 
-export default function ProjectCard({ project }: { project: Project }) {
+type ProjectCardProps = {
+  project: Project;
+  compact?: boolean;
+};
+
+export default function ProjectCard({ project, compact = false }: ProjectCardProps) {
   return (
     <Link
       href={`/projekte/${project.id}`}
@@ -22,12 +27,24 @@ export default function ProjectCard({ project }: { project: Project }) {
           </p>
         </div>
 
-        <div className="p-6 md:p-7">
-          <h3 className="text-lg font-semibold tracking-tight text-zinc-900 sm:text-xl">
+        <div className={compact ? "p-4" : "p-6 md:p-7"}>
+          <h3
+            className={
+              compact
+                ? "text-base font-semibold tracking-tight text-zinc-900"
+                : "text-lg font-semibold tracking-tight text-zinc-900 sm:text-xl"
+            }
+          >
             {project.title}
           </h3>
 
-          <p className="mt-3 text-sm leading-relaxed text-zinc-600 sm:text-[0.95rem]">
+          <p
+            className={
+              compact
+                ? "mt-2 text-sm leading-relaxed text-zinc-500"
+                : "mt-3 text-sm leading-relaxed text-zinc-600 sm:text-[0.95rem]"
+            }
+          >
             {project.shortText}
           </p>
         </div>

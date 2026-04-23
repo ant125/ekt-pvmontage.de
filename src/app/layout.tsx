@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
 
 export const metadata = {
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
-      <body>{children}</body>
+      <body>
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }
