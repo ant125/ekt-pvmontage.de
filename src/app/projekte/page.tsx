@@ -72,17 +72,17 @@ export default async function Page({ searchParams }: PageProps) {
           )}
         </div>
 
-        <section className="mt-16 rounded-2xl border border-zinc-200 bg-zinc-50 p-8 text-center md:mt-20 md:p-10">
-          <h2 className="text-2xl font-semibold text-zinc-900">
+        <section className="mt-16 rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-900 via-black to-zinc-900 px-8 py-24 text-center text-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] md:mt-20 md:px-10 md:py-28">
+          <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
             Starten Sie Ihr Projekt mit uns
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-zinc-600">
+          <p className="mx-auto mt-4 max-w-xl text-zinc-300">
             Lassen Sie uns Ihr Projekt gemeinsam umsetzen – von der Planung bis
             zur Umsetzung.
           </p>
           <a
             href="/#kontakt"
-            className="mt-6 inline-flex rounded-full bg-zinc-900 px-6 py-3 text-white transition hover:bg-zinc-800"
+            className="mt-6 inline-flex rounded-full bg-white px-6 py-3 text-black shadow-lg transition-all duration-300 hover:scale-[1.04] hover:bg-zinc-200 hover:shadow-xl active:scale-[0.98]"
           >
             Jetzt anfragen
           </a>

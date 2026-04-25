@@ -121,7 +121,7 @@ export default function ProjectPage({ params }: PageProps) {
             <img
               src={mainImage}
               alt={project.title}
-              className="aspect-[16/9] w-full rounded-2xl object-cover"
+              className="aspect-[4/3] w-full rounded-2xl object-cover md:aspect-[16/9]"
             />
           </button>
         )}

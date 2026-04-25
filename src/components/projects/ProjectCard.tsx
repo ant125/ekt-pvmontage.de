@@ -10,29 +10,23 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
   return (
     <Link
       href={`/projekte/${project.id}`}
-      className="block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+      className="block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
     >
-      <article className="group overflow-hidden rounded-2xl border border-zinc-200/80 bg-white shadow-[0_6px_30px_-8px_rgba(15,23,42,0.09)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-zinc-300/90 hover:shadow-[0_14px_44px_-12px_rgba(15,23,42,0.13)]">
+      <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200/80 bg-white shadow-[0_6px_30px_-8px_rgba(15,23,42,0.09)] transition-all duration-500 ease-out hover:-translate-y-[2px] hover:border-zinc-300/90 hover:shadow-[0_18px_50px_-14px_rgba(15,23,42,0.18)]">
         <div className="relative overflow-hidden">
           <img
             src={project.coverImage}
             alt={project.title}
-            className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+            className="h-52 w-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:brightness-[0.92]"
           />
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-          <p className="absolute bottom-4 left-4 right-4 text-sm font-medium text-white opacity-0 transition-all duration-500 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
-            Referenzprojekt
-          </p>
         </div>
 
-        <div className={compact ? "p-4" : "p-6 md:p-7"}>
+        <div className={compact ? "flex flex-1 flex-col p-4" : "flex flex-1 flex-col p-6 md:p-7"}>
           <h3
             className={
               compact
-                ? "text-base font-semibold tracking-tight text-zinc-900"
-                : "text-lg font-semibold tracking-tight text-zinc-900 sm:text-xl"
+                ? "line-clamp-2 min-h-[2.25rem] text-sm font-semibold leading-tight tracking-tight text-zinc-900"
+                : "line-clamp-2 min-h-[2.75rem] text-base font-semibold leading-tight tracking-tight text-zinc-900 sm:min-h-[3rem] sm:text-lg"
             }
           >
             {project.title}
@@ -41,8 +35,8 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
           <p
             className={
               compact
-                ? "mt-2 text-sm leading-relaxed text-zinc-500"
-                : "mt-3 text-sm leading-relaxed text-zinc-600 sm:text-[0.95rem]"
+                ? "mt-auto line-clamp-2 min-h-[3rem] pt-2 text-sm leading-snug text-zinc-500"
+                : "mt-auto line-clamp-2 min-h-[3rem] pt-3 text-sm leading-snug text-zinc-600 sm:text-[0.95rem]"
             }
           >
             {project.shortText}
