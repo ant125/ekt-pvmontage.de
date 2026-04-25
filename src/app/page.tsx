@@ -275,20 +275,72 @@ export default function Page() {
           </h2>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {[
-              "Zuverlaessig und termintreu",
-              "Schnelle, saubere Montage",
-              "Erfahrenes Fachpersonal",
-              "Qualitaet mit langfristigem Fokus",
-            ].map((item) => (
+              { icon: "check", text: "Zuverlaessig und termintreu" },
+              { icon: "fast", text: "Schnelle, saubere Montage" },
+              { icon: "team", text: "Erfahrenes Fachpersonal" },
+              { icon: "quality", text: "Qualitaet mit langfristigem Fokus" },
+            ].map((item) => {
+              const Icon = getServiceIcon(item.icon);
+              return (
               <div
-                key={item}
-                className="rounded-2xl border border-zinc-100 bg-white px-6 py-5 shadow-[0_4px_22px_-6px_rgba(15,23,42,0.07)]"
+                key={item.text}
+                className="
+                  group
+                  relative
+                  rounded-2xl
+                  border border-zinc-200
+                  bg-white
+                  px-6 py-6
+                  transition-all duration-300 ease-out
+
+                  shadow-[0_8px_28px_-8px_rgba(15,23,42,0.12)]
+
+                  hover:-translate-y-1
+                  hover:shadow-[0_18px_45px_-12px_rgba(15,23,42,0.18)]
+                  hover:border-zinc-300
+                "
               >
-                <p className="text-[0.9375rem] font-medium leading-snug text-zinc-900">
-                  {item}
-                </p>
+                <div className="
+                  pointer-events-none
+                  absolute inset-0
+                  rounded-2xl
+                  opacity-0
+                  group-hover:opacity-100
+                  transition
+                  bg-gradient-to-br from-zinc-50 to-transparent
+                " />
+
+                <div className="relative flex items-center gap-3">
+                  <div className="
+                    flex h-10 w-10 items-center justify-center
+                    rounded-lg
+                    bg-zinc-100/80
+                    ring-1 ring-zinc-200/80
+                    transition-all duration-300
+                    group-hover:bg-zinc-900
+                  ">
+                    <Icon className="
+                      w-5 h-5
+                      text-zinc-800
+                      transition-all duration-300 ease-out
+                      group-hover:text-white
+                      group-hover:scale-105
+                      group-hover:rotate-3
+                    " />
+                  </div>
+
+                  <p className="
+                    text-[15px]
+                    leading-relaxed
+                    text-zinc-800
+                    font-medium
+                  ">
+                    {item.text}
+                  </p>
+                </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

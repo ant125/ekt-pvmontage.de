@@ -10,6 +10,9 @@ import {
     MessageCircle,
     Settings,
     Droplets,
+    Zap,
+    Users,
+    ShieldCheck,
   } from "lucide-react"
   
   export const iconsMap = {
@@ -19,6 +22,10 @@ import {
     cleaning: Droplets,   // чистка крыши
     settings: Settings,   // сервис
     tool: Hammer,         // демонтаж / монтаж
+    check: Check,
+    fast: Zap,
+    team: Users,
+    quality: ShieldCheck,
   }
   
   export function getServiceIcon(key?: string) {
