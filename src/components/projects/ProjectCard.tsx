@@ -21,7 +21,7 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
           />
         </div>
 
-        <div className={compact ? "flex flex-1 flex-col p-4" : "flex flex-1 flex-col p-6 md:p-7"}>
+        <div className={compact ? "flex flex-1 flex-col p-4" : "flex flex-1 flex-col p-4 md:p-5"}>
           <h3
             className={
               compact
@@ -36,7 +36,7 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
             className={
               compact
                 ? "mt-1.5 line-clamp-2 text-sm leading-snug text-zinc-500"
-                : "mt-2 line-clamp-2 text-sm leading-snug text-zinc-600 sm:text-[0.95rem]"
+                : "mt-3 line-clamp-2 text-sm leading-snug text-zinc-600 sm:text-[0.95rem]"
             }
           >
             {project.shortText}
