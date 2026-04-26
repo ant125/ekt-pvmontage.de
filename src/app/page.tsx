@@ -389,7 +389,7 @@ export default function Page() {
                   className="h-full w-full object-cover"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 flex items-end px-4 pb-4 text-white">
+                <div className="pointer-events-none absolute inset-0 flex items-end px-4 pb-2 text-white sm:pb-4">
                   <div>
                     <h3 className="text-xl font-semibold">Unser Team</h3>
                     <p className="mt-1 text-sm text-white/80">
