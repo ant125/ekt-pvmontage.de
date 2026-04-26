@@ -382,12 +382,19 @@ export default function Page() {
             </h2>
 
             {teamData.groupImage && (
-              <div className="mt-8 mb-10 aspect-[3/1] overflow-hidden rounded-2xl">
+              <div className="relative mt-8 mb-10 aspect-[3/1] overflow-hidden rounded-2xl">
                 <img
                   src={teamData.groupImage}
                   alt="Unser Team"
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02]"
+                  className="h-full w-full object-cover"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-xl font-semibold">Unser Team</h3>
+                  <p className="mt-1 text-sm text-white/80">
+                    Erfahrene Monteure für Ihr Projekt
+                  </p>
+                </div>
               </div>
             )}
 
