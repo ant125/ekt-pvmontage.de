@@ -382,11 +382,11 @@ export default function Page() {
             </h2>
 
             {teamData.groupImage && (
-              <div className="mt-8 mb-10 overflow-hidden rounded-2xl">
+              <div className="mt-8 mb-10 aspect-[3/1] overflow-hidden rounded-2xl">
                 <img
                   src={teamData.groupImage}
                   alt="Unser Team"
-                  className="w-full h-[220px] sm:h-[300px] md:h-[380px] object-cover transition-transform duration-300 hover:scale-[1.02]"
+                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02]"
                 />
               </div>
             )}
