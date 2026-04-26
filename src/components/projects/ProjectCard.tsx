@@ -25,8 +25,8 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
           <h3
             className={
               compact
-                ? "line-clamp-2 min-h-[2.25rem] text-sm font-semibold leading-tight tracking-tight text-zinc-900"
-                : "line-clamp-2 min-h-[2.75rem] text-base font-semibold leading-tight tracking-tight text-zinc-900 sm:min-h-[3rem] sm:text-lg"
+                ? "line-clamp-2 text-sm font-semibold leading-tight tracking-tight text-zinc-900"
+                : "line-clamp-2 text-base font-semibold leading-tight tracking-tight text-zinc-900 sm:text-lg"
             }
           >
             {project.title}
@@ -35,8 +35,8 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
           <p
             className={
               compact
-                ? "mt-auto line-clamp-2 min-h-[3rem] pt-2 text-sm leading-snug text-zinc-500"
-                : "mt-auto line-clamp-2 min-h-[3rem] pt-3 text-sm leading-snug text-zinc-600 sm:text-[0.95rem]"
+                ? "mt-1.5 line-clamp-2 text-sm leading-snug text-zinc-500"
+                : "mt-2 line-clamp-2 text-sm leading-snug text-zinc-600 sm:text-[0.95rem]"
             }
           >
             {project.shortText}
