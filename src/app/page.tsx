@@ -62,23 +62,49 @@ export default function Page() {
     "Saubere Ausführung",
   ];
 
-  const team = [
-    {
-      name: "Markus Klein",
-      role: "Projektleitung",
-      img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80",
-    },
-    {
-      name: "Daniel Weber",
-      role: "Montageleiter",
-      img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=80",
-    },
-    {
-      name: "Sophie Hartmann",
-      role: "Kundenservice",
-      img: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=700&q=80",
-    },
-  ];
+  type TeamMember = {
+    id: string;
+    name: string;
+    role: string;
+    image: string;
+  };
+
+  type TeamSectionData = {
+    title: string;
+    groupImage?: string;
+    members: TeamMember[];
+  };
+
+  const teamData: TeamSectionData = {
+    title: "Unser Team",
+    groupImage: "/images/team/teams.jpg",
+    members: [
+      {
+        id: "1",
+        name: "Zviadi Zviadauri",
+        role: "Montageleiter",
+        image: "/images/team/zvyat.jpg",
+      },
+      {
+        id: "2",
+        name: "Andrey Lazarev",
+        role: "Montageleiter",
+        image: "/images/team/andrey.jpg",
+      },
+      {
+        id: "3",
+        name: "Denis Gitlan",
+        role: "Monteur",
+        image: "/images/team/denis.jpg",
+      },
+      {
+        id: "4",
+        name: "Valiko Ompolasvili",
+        role: "Monteur",
+        image: "/images/team/valera.jpg",
+      },
+    ],
+  };
 
   return (
     <main className="bg-white text-zinc-800">
@@ -345,36 +371,54 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="fade-up bg-zinc-50 py-20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65)]">
-        <div className="mx-auto max-w-6xl px-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
-          Team
-        </p>
-        <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
-          Unser Team
-        </h2>
-        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {team.map((member) => (
-            <article
-              key={member.name}
-              className="overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-[0_6px_28px_-8px_rgba(15,23,42,0.08)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-[0_14px_40px_-12px_rgba(15,23,42,0.12)]"
-            >
-              <img
-                src={member.img}
-                alt={member.name}
-                className="h-60 w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
-              />
-              <div className="p-6">
-                <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
-                  {member.name}
-                </h3>
-                <p className="mt-1.5 text-sm text-zinc-600">{member.role}</p>
+      {teamData.members.length > 0 && (
+        <section className="fade-up bg-zinc-50 py-20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65)]">
+          <div className="mx-auto max-w-6xl px-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              Team
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
+              {teamData.title}
+            </h2>
+
+            {teamData.groupImage && (
+              <div className="mt-8 mb-10 overflow-hidden rounded-2xl">
+                <img
+                  src={teamData.groupImage}
+                  alt="Unser Team"
+                  className="w-full h-[220px] sm:h-[300px] md:h-[380px] object-cover transition-transform duration-300 hover:scale-[1.02]"
+                />
               </div>
-            </article>
-          ))}
-        </div>
-        </div>
-      </section>
+            )}
+
+            <div className="mt-12 grid auto-rows-fr gap-7 sm:grid-cols-2 lg:grid-cols-3">
+              {teamData.members.map((member) => (
+                <article
+                  key={member.id}
+                  className="group overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="relative aspect-[3/2] overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="h-full w-full object-cover object-top transition duration-500 ease-out group-hover:scale-[1.05] group-hover:brightness-[1.02]"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
+                  </div>
+                  <div className="flex flex-col gap-2 p-4">
+                    <h3 className="line-clamp-2 text-lg font-semibold leading-snug tracking-tight text-zinc-900">
+                      {member.name}
+                    </h3>
+                    <p className="line-clamp-2 text-sm leading-relaxed text-zinc-600">
+                      {member.role}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section
         id="kontakt"
