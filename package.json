@@ -16,7 +16,8 @@
     "next": "latest",
     "prisma": "6.19.3",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "resend": "^6.12.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

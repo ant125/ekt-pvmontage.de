@@ -4,6 +4,32 @@ import { getServiceIcon } from "@/lib/icons";
 import { projects } from "@/lib/projects";
 import { useEffect, useState } from "react";
 export default function Page() {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+  
+    const form = e.currentTarget
+  
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    }
+  
+    const res = await fetch("/api/contact", { // ⚠️ ВАЖНО!
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+  
+    if (res.ok) {
+      alert("Nachricht gesendet!")
+      form.reset()
+    } else {
+      alert("Fehler beim Senden")
+    }
+  }
   const heroImageSettings = {
     scaleMobile: 0.55, // размер на мобилке
     scaleDesktop: 0.6, // размер на десктопе
@@ -442,21 +468,22 @@ export default function Page() {
             </h2>
             <div className="mt-8 space-y-5 text-[0.9375rem] leading-relaxed text-zinc-700">
               <p>
-                <span className="font-medium text-zinc-900">Telefon:</span> +49
-                251 1234567
+                <span className="font-medium text-zinc-900">Telefon:</span>{" "}
+                +49 176 61582721
               </p>
               <p>
                 <span className="font-medium text-zinc-900">Email:</span>{" "}
-                info@ekt-pvmontage.de
+                info.ekt@gmx.de
               </p>
               <p>
                 <span className="font-medium text-zinc-900">Adresse:</span>{" "}
-                Musterstrasse 12, 48143 Muenster
+                Metzrstraße 13, 86316 Friedberg
               </p>
             </div>
           </div>
 
-          <form className="rounded-2xl border border-zinc-100 bg-white p-7 shadow-[0_20px_55px_-22px_rgba(15,23,42,0.18)] md:p-8">
+          <form onSubmit={handleSubmit} className="rounded-2xl border border-zinc-100 bg-white p-7 shadow-[0_20px_55px_-22px_rgba(15,23,42,0.18)] md:p-8">
+          <input type="text" name="company" style={{ display: "none" }} />
             <div className="space-y-5">
               <div>
                 <label
