@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: "Website <onboarding@resend.dev>",
-      to: process.env.CONTACT_EMAIL,
+      to: process.env.CONTACT_EMAIL!,
       subject: "Neue Anfrage über Website",
       html: `
         <h2>Neue Nachricht</h2>
