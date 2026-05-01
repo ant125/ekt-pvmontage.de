@@ -45,7 +45,7 @@ model Admin {
 
 model LegalPage {
   id        String   @id @default(cuid())
-  type      String // "impressum" | "datenschutz"
+  type      String   @unique // "impressum" | "datenschutz"
   content   String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
