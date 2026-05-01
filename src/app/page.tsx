@@ -4,6 +4,15 @@ import { getServiceIcon } from "@/lib/icons";
 import { projects } from "@/lib/projects";
 import { useEffect, useState } from "react";
 export default function Page() {
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
+  useEffect(() => {
+    if (status === "success" || status === "error") {
+      const timer = setTimeout(() => {
+        setStatus("idle")
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [status])
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
   
@@ -14,20 +23,28 @@ export default function Page() {
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
     }
-  
+
+    const token = await (window as any).grecaptcha.execute(
+      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+      { action: "submit" }
+    )
+
     const res = await fetch("/api/contact", { // ⚠️ ВАЖНО!
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        ...data,
+        token,
+      }),
     })
   
     if (res.ok) {
-      alert("Nachricht gesendet!")
+      setStatus("success")
       form.reset()
     } else {
-      alert("Fehler beim Senden")
+      setStatus("error")
     }
   }
   const heroImageSettings = {
@@ -134,6 +151,7 @@ export default function Page() {
 
   return (
     <main className="bg-white text-zinc-800">
+      <script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`} async defer />
       <section className="fade-up relative flex min-h-0 w-full flex-col justify-start overflow-x-clip overflow-y-visible bg-white py-6 md:min-h-[92vh] md:justify-center md:py-8">
       <div className="mx-auto grid max-w-6xl gap-10 md:gap-16 px-6 md:grid-cols-2 md:items-center">
           <div className="relative z-20 max-w-xl">
@@ -158,15 +176,7 @@ export default function Page() {
                   +49 176 61582721
                 </a>
               </p>
-              <p>
-                <span className="font-semibold text-zinc-900">E-Mail:</span>{" "}
-                <a
-                  href="mailto:info.ekt@gmx.de"
-                  className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition hover:decoration-zinc-900"
-                >
-                  info.ekt@gmx.de
-                </a>
-              </p>
+              
             </div>
             <a
               href="#kontakt"
@@ -471,10 +481,7 @@ export default function Page() {
                 <span className="font-medium text-zinc-900">Telefon:</span>{" "}
                 +49 176 61582721
               </p>
-              <p>
-                <span className="font-medium text-zinc-900">Email:</span>{" "}
-                info.ekt@gmx.de
-              </p>
+            
               <p>
                 <span className="font-medium text-zinc-900">Adresse:</span>{" "}
                 Metzrstraße 13, 86316 Friedberg
@@ -537,6 +544,18 @@ export default function Page() {
             >
               Nachricht senden
             </button>
+            {status === "success" && (
+              <div className="mt-4 flex items-center gap-2 rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">
+                <span>✓</span>
+                <span>Nachricht erfolgreich gesendet</span>
+              </div>
+            )}
+            {status === "error" && (
+              <div className="mt-4 flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
+                <span>⚠</span>
+                <span>Fehler beim Senden. Bitte erneut versuchen.</span>
+              </div>
+            )}
           </form>
         </div>
       </section>
