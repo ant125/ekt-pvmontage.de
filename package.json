@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "db:push": "dotenv -e .env.local -- prisma db push",
     "postinstall": "prisma generate",
     "start": "next start"
   },
@@ -12,6 +13,7 @@
     "@prisma/client": "6.19.3",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
+    "dotenv-cli": "^11.0.0",
     "lucide-react": "^1.8.0",
     "next": "latest",
     "prisma": "6.19.3",
