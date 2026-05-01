@@ -1,8 +1,66 @@
-export default function Page() {
+import Link from "next/link";
+import Container from "@/components/ui/Container";
+import { prisma } from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
+
+async function getContent(): Promise<string> {
+  const page = await prisma.legalPage.findFirst({
+    where: { type: "datenschutz" },
+  });
+  return page?.content ?? "";
+}
+
+export default async function DatenschutzPage() {
+  const content = await getContent();
+
   return (
-    <main>
-      <h1>Datenschutz</h1>
-      <p>Страница политики конфиденциальности (заглушка).</p>
-    </main>
+    <div className="flex min-h-screen flex-col bg-white">
+      <main className="flex-1">
+        <Container>
+          <div className="py-16 md:py-20">
+            <div className="max-w-3xl mx-auto">
+              <nav
+                aria-label="Breadcrumb"
+                className="mb-10 text-sm text-zinc-500"
+              >
+                <ol className="flex items-center gap-2">
+                  <li>
+                    <Link
+                      href="/"
+                      className="hover:text-zinc-800 transition-colors"
+                    >
+                      Startseite
+                    </Link>
+                  </li>
+                  <li aria-hidden="true" className="text-zinc-400">
+                    →
+                  </li>
+                  <li aria-current="page" className="text-zinc-700">
+                    Datenschutz
+                  </li>
+                </ol>
+              </nav>
+
+              <h1 className="mb-12 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+                Datenschutz
+              </h1>
+
+              {content ? (
+                <article className="prose prose-neutral max-w-none break-words leading-relaxed">
+                  {content.split("\n\n").map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </article>
+              ) : (
+                <p className="text-zinc-500">
+                  Inhalt wird in Kürze ergänzt.
+                </p>
+              )}
+            </div>
+          </div>
+        </Container>
+      </main>
+    </div>
   );
 }

@@ -19,41 +19,45 @@ export default async function ImpressumPage() {
       <main className="flex-1">
         <Container>
           <div className="py-16 md:py-20">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-10 text-sm text-zinc-500"
-            >
-              <ol className="flex items-center gap-2">
-                <li>
-                  <Link
-                    href="/"
-                    className="hover:text-zinc-800 transition-colors"
-                  >
-                    Startseite
-                  </Link>
-                </li>
-                <li aria-hidden="true" className="text-zinc-400">
-                  →
-                </li>
-                <li aria-current="page" className="text-zinc-700">
-                  Impressum
-                </li>
-              </ol>
-            </nav>
+            <div className="max-w-3xl mx-auto">
+              <nav
+                aria-label="Breadcrumb"
+                className="mb-10 text-sm text-zinc-500"
+              >
+                <ol className="flex items-center gap-2">
+                  <li>
+                    <Link
+                      href="/"
+                      className="hover:text-zinc-800 transition-colors"
+                    >
+                      Startseite
+                    </Link>
+                  </li>
+                  <li aria-hidden="true" className="text-zinc-400">
+                    →
+                  </li>
+                  <li aria-current="page" className="text-zinc-700">
+                    Impressum
+                  </li>
+                </ol>
+              </nav>
 
-            <h1 className="mb-12 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
-              Impressum
-            </h1>
+              <h1 className="mb-12 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+                Impressum
+              </h1>
 
-            {content ? (
-              <article className="prose prose-neutral max-w-3xl whitespace-pre-wrap leading-relaxed">
-                {content}
-              </article>
-            ) : (
-              <p className="max-w-3xl text-zinc-500">
-                Inhalt wird in Kürze ergänzt.
-              </p>
-            )}
+              {content ? (
+                <article className="prose prose-neutral max-w-none break-words leading-relaxed">
+                  {content.split("\n\n").map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </article>
+              ) : (
+                <p className="text-zinc-500">
+                  Inhalt wird in Kürze ergänzt.
+                </p>
+              )}
+            </div>
           </div>
         </Container>
       </main>
