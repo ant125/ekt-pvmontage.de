@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { projects } from "@/lib/projects";
+import { getPublishedProjects } from "@/lib/project-service";
 import ProjectCard from "@/components/projects/ProjectCard";
 import Container from "@/components/ui/Container";
 
@@ -11,6 +11,7 @@ type PageProps = {
 
 export default async function Page({ searchParams }: PageProps) {
   const sp = await searchParams;
+  const projects = await getPublishedProjects();
   const totalPages = Math.max(1, Math.ceil(projects.length / PROJECTS_PER_PAGE));
   const rawPage = Number(sp.page);
   const page = Math.min(

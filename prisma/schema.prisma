@@ -8,15 +8,19 @@ datasource db {
 }
 
 model Project {
-  id           String   @id @default(cuid())
-  title        String
-  description  String
-  city         String
-  modulesCount Int
-  powerKWp     Float
-  batteryKWh   Float
-  images       Json
-  createdAt    DateTime @default(now())
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  shortText   String
+  fullText    String
+  coverImage  String
+  images      Json
+  location    String?
+  year        String?
+  published   Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model TeamMember {

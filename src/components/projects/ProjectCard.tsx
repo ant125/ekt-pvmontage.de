@@ -1,8 +1,8 @@
 import Link from "next/link";
-import type { Project } from "@/lib/projects";
+import type { ProjectDTO } from "@/lib/project-service";
 
 type ProjectCardProps = {
-  project: Project;
+  project: ProjectDTO;
   compact?: boolean;
 };
 
