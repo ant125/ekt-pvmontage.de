@@ -28,3 +28,13 @@ body {
     animation: none;
   }
 }
+
+.grecaptcha-badge {
+  bottom: 88px !important;
+}
+
+@media (min-width: 768px) {
+  .grecaptcha-badge {
+    bottom: 16px !important;
+  }
+}
