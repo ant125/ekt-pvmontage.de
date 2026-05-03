@@ -26,12 +26,12 @@ export async function POST(req: Request) {
 
     const verifyData = await verifyRes.json()
 
-    //if (!verifyData.success || verifyData.score < 0.3) {
-    //  return new Response(JSON.stringify({ ok: false }), { status: 400 })
-    //}
+    if (!verifyData.success || verifyData.score < 0.3) {
+      return new Response(JSON.stringify({ ok: false }), { status: 400 })
+    }
 
     await resend.emails.send({
-      from: "Website <onboarding@resend.dev>",
+      from: "EKT PV Montage <noreply@ekt-pvmontage.de>",
       to: process.env.CONTACT_EMAIL!,
       subject: "Neue Anfrage über Website",
       html: `
