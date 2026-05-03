@@ -80,50 +80,54 @@ export default async function Page() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
-                <form action={moveProjectAction}>
-                  <input type="hidden" name="id" value={project.id} />
-                  <input type="hidden" name="direction" value="up" />
-                  <button
-                    type="submit"
-                    disabled={index === 0}
-                    title="Nach oben"
-                    className="rounded border border-gray-300 px-2 py-1 text-xs transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30"
-                  >
-                    ↑
-                  </button>
-                </form>
-                <form action={moveProjectAction}>
-                  <input type="hidden" name="id" value={project.id} />
-                  <input type="hidden" name="direction" value="down" />
-                  <button
-                    type="submit"
-                    disabled={index === projects.length - 1}
-                    title="Nach unten"
-                    className="rounded border border-gray-300 px-2 py-1 text-xs transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30"
-                  >
-                    ↓
-                  </button>
-                </form>
+              <div className="flex w-full min-w-0 flex-col gap-y-2 md:w-auto md:flex-row md:flex-wrap md:items-center md:gap-2">
+                <div className="flex flex-wrap items-center gap-2 md:contents">
+                  <form action={moveProjectAction}>
+                    <input type="hidden" name="id" value={project.id} />
+                    <input type="hidden" name="direction" value="up" />
+                    <button
+                      type="submit"
+                      disabled={index === 0}
+                      title="Nach oben"
+                      className="rounded border border-gray-300 px-2 py-1 text-xs transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30"
+                    >
+                      ↑
+                    </button>
+                  </form>
+                  <form action={moveProjectAction}>
+                    <input type="hidden" name="id" value={project.id} />
+                    <input type="hidden" name="direction" value="down" />
+                    <button
+                      type="submit"
+                      disabled={index === projects.length - 1}
+                      title="Nach unten"
+                      className="rounded border border-gray-300 px-2 py-1 text-xs transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30"
+                    >
+                      ↓
+                    </button>
+                  </form>
 
-                <form action={togglePublishedAction}>
-                  <input type="hidden" name="id" value={project.id} />
-                  <button
-                    type="submit"
+                  <form action={togglePublishedAction}>
+                    <input type="hidden" name="id" value={project.id} />
+                    <button
+                      type="submit"
+                      className="rounded border border-gray-300 px-3 py-1 text-xs transition hover:bg-gray-50"
+                    >
+                      {project.published ? "Verstecken" : "Veröffentlichen"}
+                    </button>
+                  </form>
+
+                  <Link
+                    href={`/admin/projekte/${project.id}`}
                     className="rounded border border-gray-300 px-3 py-1 text-xs transition hover:bg-gray-50"
                   >
-                    {project.published ? "Verstecken" : "Veröffentlichen"}
-                  </button>
-                </form>
+                    Bearbeiten
+                  </Link>
+                </div>
 
-                <Link
-                  href={`/admin/projekte/${project.id}`}
-                  className="rounded border border-gray-300 px-3 py-1 text-xs transition hover:bg-gray-50"
-                >
-                  Bearbeiten
-                </Link>
-
-                <DeleteProjectButton id={project.id} title={project.title} />
+                <div className="flex md:contents">
+                  <DeleteProjectButton id={project.id} title={project.title} />
+                </div>
               </div>
             </li>
           ))}
