@@ -1,4 +1,6 @@
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import rehypeSanitize from "rehype-sanitize";
 import Container from "@/components/ui/Container";
 import { prisma } from "@/lib/prisma";
 
@@ -48,9 +50,9 @@ export default async function ImpressumPage() {
 
               {content ? (
                 <article className="prose prose-neutral max-w-none break-words leading-relaxed">
-                  {content.split("\n\n").map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
+                  <ReactMarkdown rehypePlugins={[rehypeSanitize]}>
+                    {content}
+                  </ReactMarkdown>
                 </article>
               ) : (
                 <p className="text-zinc-500">
