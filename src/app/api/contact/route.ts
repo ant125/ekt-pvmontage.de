@@ -3,7 +3,6 @@ import { Resend } from "resend"
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: Request) {
-  console.log("CONTACT_EMAIL:", process.env.CONTACT_EMAIL);
   try {
     const formData = await req.json()
 
@@ -27,9 +26,9 @@ export async function POST(req: Request) {
 
     const verifyData = await verifyRes.json()
 
-    if (!verifyData.success || verifyData.score < 0.3) {
-      return new Response(JSON.stringify({ ok: false }), { status: 400 })
-    }
+    //if (!verifyData.success || verifyData.score < 0.3) {
+    //  return new Response(JSON.stringify({ ok: false }), { status: 400 })
+    //}
 
     await resend.emails.send({
       from: "Website <onboarding@resend.dev>",
