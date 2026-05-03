@@ -4,7 +4,17 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import type { ProjectFormState } from "@/lib/admin-projects-types";
+import type {
+  ProjectFormState,
+  UploadActionState,
+} from "@/lib/admin-projects-types";
+import {
+  ALLOWED_UPLOAD_MIME,
+  MAX_UPLOAD_BYTES,
+  uploadProjectImage,
+} from "@/lib/storage";
+
+const MAX_PROJECT_IMAGES = 15;
 
 async function ensureAdmin() {
   const c = await cookies();
@@ -16,13 +26,6 @@ async function ensureAdmin() {
 function getString(formData: FormData, key: string): string {
   const v = formData.get(key);
   return typeof v === "string" ? v.trim() : "";
-}
-
-function parseImagesField(raw: string): string[] {
-  return raw
-    .split(/\r?\n/)
-    .map((s) => s.trim())
-    .filter(Boolean);
 }
 
 function revalidatePublic(slug?: string, oldSlug?: string) {
@@ -40,12 +43,9 @@ type FormPayload = {
   slug: string;
   shortText: string;
   fullText: string;
-  coverImage: string;
   location: string;
   year: string;
-  imagesRaw: string;
   published: boolean;
-  sortOrderRaw: string;
 };
 
 function readPayload(formData: FormData): FormPayload {
@@ -54,12 +54,9 @@ function readPayload(formData: FormData): FormPayload {
     slug: getString(formData, "slug"),
     shortText: getString(formData, "shortText"),
     fullText: getString(formData, "fullText"),
-    coverImage: getString(formData, "coverImage"),
     location: getString(formData, "location"),
     year: getString(formData, "year"),
-    imagesRaw: getString(formData, "images"),
     published: formData.get("published") === "on",
-    sortOrderRaw: getString(formData, "sortOrder"),
   };
 }
 
@@ -70,7 +67,6 @@ function validatePayload(p: FormPayload): Record<string, string> {
   else if (!SLUG_REGEX.test(p.slug)) errors.slug = "Nur a-z, 0-9 und -";
   if (!p.shortText) errors.shortText = "Pflichtfeld";
   if (!p.fullText) errors.fullText = "Pflichtfeld";
-  if (!p.coverImage) errors.coverImage = "Pflichtfeld";
   return errors;
 }
 
@@ -97,14 +93,14 @@ export async function createProjectAction(
   const min = await prisma.project.aggregate({ _min: { sortOrder: true } });
   const sortOrder = min._min.sortOrder === null ? 0 : min._min.sortOrder - 1;
 
-  await prisma.project.create({
+  const created = await prisma.project.create({
     data: {
       title: payload.title,
       slug: payload.slug,
       shortText: payload.shortText,
       fullText: payload.fullText,
-      coverImage: payload.coverImage,
-      images: parseImagesField(payload.imagesRaw),
+      coverImage: "",
+      images: [],
       location: payload.location || null,
       year: payload.year || null,
       published: payload.published,
@@ -113,7 +109,7 @@ export async function createProjectAction(
   });
 
   revalidatePublic(payload.slug);
-  redirect("/admin/projekte");
+  redirect(`/admin/projekte/${created.id}`);
 }
 
 export async function updateProjectAction(
@@ -151,8 +147,6 @@ export async function updateProjectAction(
       slug: payload.slug,
       shortText: payload.shortText,
       fullText: payload.fullText,
-      coverImage: payload.coverImage,
-      images: parseImagesField(payload.imagesRaw),
       location: payload.location || null,
       year: payload.year || null,
       published: payload.published,
@@ -191,6 +185,185 @@ export async function togglePublishedAction(formData: FormData): Promise<void> {
   });
 
   revalidatePublic(project.slug);
+}
+
+function imagesToStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is string => typeof item === "string");
+}
+
+function buildAllImages(
+  coverImage: string,
+  images: unknown,
+): string[] {
+  const list = imagesToStringArray(images);
+  return coverImage ? [coverImage, ...list] : list;
+}
+
+function splitImages(list: string[]): { coverImage: string; images: string[] } {
+  if (list.length === 0) return { coverImage: "", images: [] };
+  return { coverImage: list[0], images: list.slice(1) };
+}
+
+function validateUploadFile(file: unknown): string | null {
+  if (!(file instanceof File)) return "Datei fehlt";
+  if (file.size === 0) return "Datei ist leer";
+  if (file.size > MAX_UPLOAD_BYTES) {
+    return `Datei ist zu groß (max. ${Math.round(
+      MAX_UPLOAD_BYTES / (1024 * 1024),
+    )} MB)`;
+  }
+  if (!ALLOWED_UPLOAD_MIME.has(file.type)) {
+    return "Dateityp wird nicht unterstützt (erlaubt: WebP, JPG, PNG)";
+  }
+  return null;
+}
+
+export async function uploadProjectImagesAction(
+  _prev: UploadActionState,
+  formData: FormData,
+): Promise<UploadActionState> {
+  await ensureAdmin();
+
+  const id = getString(formData, "id");
+  if (!id) return { error: "Ungültige ID" };
+
+  const project = await prisma.project.findUnique({ where: { id } });
+  if (!project) return { error: "Projekt nicht gefunden" };
+
+  const rawFiles = formData.getAll("files");
+  const files = rawFiles.filter(
+    (f): f is File => f instanceof File && f.size > 0,
+  );
+
+  if (files.length === 0) return { error: "Keine Datei ausgewählt" };
+
+  for (const f of files) {
+    const fileError = validateUploadFile(f);
+    if (fileError) return { error: `${f.name}: ${fileError}` };
+  }
+
+  const current = buildAllImages(project.coverImage, project.images);
+  const remaining = MAX_PROJECT_IMAGES - current.length;
+  if (remaining <= 0) {
+    return {
+      error: `Maximal ${MAX_PROJECT_IMAGES} Bilder pro Projekt erreicht`,
+    };
+  }
+
+  const filesToUpload = files.slice(0, remaining);
+
+  const uploadedUrls: string[] = [];
+  for (const f of filesToUpload) {
+    try {
+      const url = await uploadProjectImage({
+        slug: project.slug,
+        file: f,
+        kind: "gallery",
+      });
+      uploadedUrls.push(url);
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Upload fehlgeschlagen";
+      if (uploadedUrls.length > 0) {
+        const partial = splitImages([...current, ...uploadedUrls]);
+        await prisma.project.update({
+          where: { id },
+          data: { coverImage: partial.coverImage, images: partial.images },
+        });
+        revalidatePublic(project.slug);
+      }
+      return { error: `${f.name}: ${message}` };
+    }
+  }
+
+  const next = splitImages([...current, ...uploadedUrls]);
+  await prisma.project.update({
+    where: { id },
+    data: { coverImage: next.coverImage, images: next.images },
+  });
+
+  revalidatePublic(project.slug);
+
+  if (filesToUpload.length < files.length) {
+    return {
+      ok: true,
+      error: `Nur ${filesToUpload.length} von ${files.length} Bildern hinzugefügt (Limit ${MAX_PROJECT_IMAGES}).`,
+    };
+  }
+
+  return { ok: true };
+}
+
+export async function removeProjectImageAction(
+  _prev: UploadActionState,
+  formData: FormData,
+): Promise<UploadActionState> {
+  await ensureAdmin();
+
+  const id = getString(formData, "id");
+  const url = getString(formData, "url");
+  if (!id) return { error: "Ungültige ID" };
+  if (!url) return { error: "Ungültige Bild-URL" };
+
+  const project = await prisma.project.findUnique({ where: { id } });
+  if (!project) return { error: "Projekt nicht gefunden" };
+
+  const current = buildAllImages(project.coverImage, project.images);
+  const filtered = current.filter((u) => u !== url);
+
+  if (filtered.length === current.length) {
+    return { error: "Bild nicht im Projekt gefunden" };
+  }
+
+  const next = splitImages(filtered);
+  await prisma.project.update({
+    where: { id },
+    data: { coverImage: next.coverImage, images: next.images },
+  });
+
+  revalidatePublic(project.slug);
+  return { ok: true };
+}
+
+export async function moveProjectImageAction(
+  _prev: UploadActionState,
+  formData: FormData,
+): Promise<UploadActionState> {
+  await ensureAdmin();
+
+  const id = getString(formData, "id");
+  const url = getString(formData, "url");
+  const direction = getString(formData, "direction");
+  if (!id) return { error: "Ungültige ID" };
+  if (!url) return { error: "Ungültige Bild-URL" };
+  if (direction !== "up" && direction !== "down") {
+    return { error: "Ungültige Richtung" };
+  }
+
+  const project = await prisma.project.findUnique({ where: { id } });
+  if (!project) return { error: "Projekt nicht gefunden" };
+
+  const current = buildAllImages(project.coverImage, project.images);
+  const idx = current.indexOf(url);
+  if (idx < 0) return { error: "Bild nicht im Projekt gefunden" };
+
+  const swap = direction === "up" ? idx - 1 : idx + 1;
+  if (swap < 0 || swap >= current.length) {
+    return { ok: true };
+  }
+
+  const next = [...current];
+  [next[idx], next[swap]] = [next[swap], next[idx]];
+
+  const split = splitImages(next);
+  await prisma.project.update({
+    where: { id },
+    data: { coverImage: split.coverImage, images: split.images },
+  });
+
+  revalidatePublic(project.slug);
+  return { ok: true };
 }
 
 export async function moveProjectAction(formData: FormData): Promise<void> {

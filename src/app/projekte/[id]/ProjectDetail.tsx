@@ -22,8 +22,6 @@ export default function ProjectDetail({
   const images = [project.coverImage, ...project.images].filter(Boolean);
   const mainImage = images[0];
   const galleryImages = images.slice(1);
-  const galleryPreview = galleryImages.slice(0, 4);
-  const remainingImagesCount = Math.max(galleryImages.length - galleryPreview.length, 0);
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -107,33 +105,21 @@ export default function ProjectDetail({
 
         {galleryImages.length > 0 && (
           <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
-            {galleryPreview.map((img, i) => {
-              const isLastVisible = i === galleryPreview.length - 1;
-              const showOverlay = remainingImagesCount > 0 && isLastVisible;
-
-              return (
-                <button
-                  key={`${project.id}-img-${i}`}
-                  type="button"
-                  onClick={() => openLightbox(i + 1)}
-                  className="group relative block w-full overflow-hidden rounded-2xl"
-                  aria-label="Galeriebild in Vollansicht öffnen"
-                >
-                  <img
-                    src={img}
-                    alt=""
-                    className="aspect-[4/3] w-full rounded-2xl object-cover transition duration-300 group-hover:scale-[1.02]"
-                  />
-                  {showOverlay && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                      <span className="text-lg font-semibold text-white">
-                        +{remainingImagesCount} weitere Bilder
-                      </span>
-                    </div>
-                  )}
-                </button>
-              );
-            })}
+            {galleryImages.map((img, i) => (
+              <button
+                key={`${project.id}-gallery-${i}-${img}`}
+                type="button"
+                onClick={() => openLightbox(i + 1)}
+                className="group relative block w-full overflow-hidden rounded-2xl"
+                aria-label="Galeriebild in Vollansicht öffnen"
+              >
+                <img
+                  src={img}
+                  alt=""
+                  className="aspect-[4/3] w-full rounded-2xl object-cover transition duration-300 group-hover:scale-[1.02]"
+                />
+              </button>
+            ))}
           </div>
         )}
         </div>
