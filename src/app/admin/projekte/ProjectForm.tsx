@@ -14,14 +14,11 @@ import {
   createProjectAction,
   moveProjectImageAction,
   removeProjectImageAction,
+  type ProjectFormActionState,
   updateProjectAction,
   uploadProjectImagesAction,
 } from "@/lib/admin-projects";
-import type {
-  ProjectFormState,
-  UploadActionState,
-} from "@/lib/admin-projects-types";
-import type { ProjectAdminRow } from "@/lib/project-service";
+import type { UploadActionState } from "@/lib/admin-projects-types";import type { ProjectAdminRow } from "@/lib/project-service";
 
 type ProjectFormProps =
   | { mode: "create"; initial?: undefined }
@@ -60,72 +57,76 @@ async function compressForUpload(file: File): Promise<File> {
 
 export default function ProjectForm({ mode, initial }: ProjectFormProps) {
   const action = mode === "create" ? createProjectAction : updateProjectAction;
-  const [state, formAction, pending] = useActionState<ProjectFormState, FormData>(
-    action,
-    undefined,
-  );
+  const [state, formAction, pending] = useActionState<
+    ProjectFormActionState,
+    FormData
+  >(action, undefined);
 
   const fieldErr = state?.fieldErrors ?? {};
 
+  const defaults =
+    state?.values ?? {
+      title: initial?.title ?? "",
+      location: initial?.location ?? "",
+      year: initial?.year ?? "",
+      shortText: initial?.shortText ?? "",
+      fullText: initial?.fullText ?? "",
+      published: initial?.published ?? true,
+    };
+
+  const formKey = state?.values
+    ? `submitted-${defaults.title}-${defaults.location}-${defaults.year}-${defaults.shortText}-${defaults.fullText}-${defaults.published}`
+    : `${mode}-${initial?.id ?? "new"}`;
+
   return (
     <div className="space-y-8">
-      <form action={formAction} className="space-y-5">
+      <form key={formKey} action={formAction} className="space-y-5">
         {mode === "edit" ? (
           <input type="hidden" name="id" value={initial.id} />
         ) : null}
 
-        <Field label="Titel" error={fieldErr.title}>
+        <p className="text-xs text-gray-500">* Pflichtfelder</p>
+
+        <Field label="Titel *" error={fieldErr.title}>
           <input
             name="title"
-            defaultValue={initial?.title ?? ""}
-            className={inputCls}
-          />
-        </Field>
-
-        <Field
-          label="Slug (URL-Teil, z. B. projekt-10)"
-          error={fieldErr.slug}
-          hint="Wird in der URL benutzt: /projekte/<slug>"
-        >
-          <input
-            name="slug"
-            defaultValue={initial?.slug ?? ""}
+            defaultValue={defaults.title}
             className={inputCls}
           />
         </Field>
 
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Ort">
+          <Field label="Ort *" error={fieldErr.location}>
             <input
               name="location"
-              defaultValue={initial?.location ?? ""}
+              defaultValue={defaults.location}
               className={inputCls}
               placeholder="z. B. Augsburg"
             />
           </Field>
-          <Field label="Jahr">
+          <Field label="Jahr *" error={fieldErr.year}>
             <input
               name="year"
-              defaultValue={initial?.year ?? ""}
+              defaultValue={defaults.year}
               className={inputCls}
               placeholder="z. B. 2024"
             />
           </Field>
         </div>
 
-        <Field label="Kurztext (für Karte)" error={fieldErr.shortText}>
+        <Field label="Kurztext (für Karte) *" error={fieldErr.shortText}>
           <textarea
             name="shortText"
-            defaultValue={initial?.shortText ?? ""}
+            defaultValue={defaults.shortText}
             rows={2}
             className={inputCls}
           />
         </Field>
 
-        <Field label="Volltext (für Projektseite)" error={fieldErr.fullText}>
+        <Field label="Volltext (für Projektseite) *" error={fieldErr.fullText}>
           <textarea
             name="fullText"
-            defaultValue={initial?.fullText ?? ""}
+            defaultValue={defaults.fullText}
             rows={6}
             className={inputCls}
           />
@@ -136,7 +137,7 @@ export default function ProjectForm({ mode, initial }: ProjectFormProps) {
             <input
               type="checkbox"
               name="published"
-              defaultChecked={initial?.published ?? true}
+              defaultChecked={defaults.published}
             />
             Veröffentlicht
           </label>

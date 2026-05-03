@@ -4,15 +4,27 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import type {
-  ProjectFormState,
-  UploadActionState,
-} from "@/lib/admin-projects-types";
+import type { UploadActionState } from "@/lib/admin-projects-types";
 import {
   ALLOWED_UPLOAD_MIME,
   MAX_UPLOAD_BYTES,
   uploadProjectImage,
 } from "@/lib/storage";
+
+export type ProjectFormActionState =
+  | {
+      error?: string;
+      fieldErrors?: Record<string, string>;
+      values?: {
+        title: string;
+        location: string;
+        year: string;
+        shortText: string;
+        fullText: string;
+        published: boolean;
+      };
+    }
+  | undefined;
 
 const MAX_PROJECT_IMAGES = 15;
 
@@ -36,11 +48,8 @@ function revalidatePublic(slug?: string, oldSlug?: string) {
   revalidatePath("/admin/projekte");
 }
 
-const SLUG_REGEX = /^[a-z0-9-]+$/;
-
 type FormPayload = {
   title: string;
-  slug: string;
   shortText: string;
   fullText: string;
   location: string;
@@ -48,10 +57,54 @@ type FormPayload = {
   published: boolean;
 };
 
+function persistValues(p: FormPayload): NonNullable<
+  Exclude<ProjectFormActionState, undefined>["values"]
+> {
+  return {
+    title: p.title,
+    location: p.location,
+    year: p.year,
+    shortText: p.shortText,
+    fullText: p.fullText,
+    published: p.published,
+  };
+}
+
+function slugFromTitle(raw: string): string {
+  let s = raw.trim();
+  s = s
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
+    .replace(/Ä/g, "ae")
+    .replace(/Ö/g, "oe")
+    .replace(/Ü/g, "ue");
+  s = s.toLowerCase();
+  s = s.replace(/\s+/g, "-");
+  s = s.replace(/[^a-z0-9-]/g, "");
+  s = s.replace(/-+/g, "-");
+  s = s.replace(/^-+|-+$/g, "");
+  return s;
+}
+
+async function allocateUniqueSlug(base: string): Promise<string> {
+  let candidate = base;
+  let n = 2;
+  while (true) {
+    const existing = await prisma.project.findUnique({
+      where: { slug: candidate },
+      select: { id: true },
+    });
+    if (!existing) return candidate;
+    candidate = `${base}-${n}`;
+    n++;
+  }
+}
+
 function readPayload(formData: FormData): FormPayload {
   return {
     title: getString(formData, "title"),
-    slug: getString(formData, "slug"),
     shortText: getString(formData, "shortText"),
     fullText: getString(formData, "fullText"),
     location: getString(formData, "location"),
@@ -63,32 +116,41 @@ function readPayload(formData: FormData): FormPayload {
 function validatePayload(p: FormPayload): Record<string, string> {
   const errors: Record<string, string> = {};
   if (!p.title) errors.title = "Pflichtfeld";
-  if (!p.slug) errors.slug = "Pflichtfeld";
-  else if (!SLUG_REGEX.test(p.slug)) errors.slug = "Nur a-z, 0-9 und -";
+  if (!p.location) errors.location = "Pflichtfeld";
+  if (!p.year) errors.year = "Pflichtfeld";
   if (!p.shortText) errors.shortText = "Pflichtfeld";
   if (!p.fullText) errors.fullText = "Pflichtfeld";
   return errors;
 }
 
 export async function createProjectAction(
-  _prev: ProjectFormState,
+  _prev: ProjectFormActionState,
   formData: FormData,
-): Promise<ProjectFormState> {
+): Promise<ProjectFormActionState> {
   await ensureAdmin();
 
   const payload = readPayload(formData);
   const fieldErrors = validatePayload(payload);
   if (Object.keys(fieldErrors).length > 0) {
-    return { fieldErrors, error: "Bitte Felder prüfen" };
-  }
-
-  const existing = await prisma.project.findUnique({ where: { slug: payload.slug } });
-  if (existing) {
     return {
-      fieldErrors: { slug: "Slug existiert bereits" },
-      error: "Slug existiert bereits",
+      fieldErrors,
+      error: "Bitte Felder prüfen",
+      values: persistValues(payload),
     };
   }
+
+  const baseSlug = slugFromTitle(payload.title);
+  if (!baseSlug) {
+    return {
+      fieldErrors: {
+        title: "Aus dem Titel lässt sich kein Slug erzeugen (Buchstaben/Ziffern ergänzen).",
+      },
+      error: "Bitte Felder prüfen",
+      values: persistValues(payload),
+    };
+  }
+
+  const slug = await allocateUniqueSlug(baseSlug);
 
   const min = await prisma.project.aggregate({ _min: { sortOrder: true } });
   const sortOrder = min._min.sortOrder === null ? 0 : min._min.sortOrder - 1;
@@ -96,7 +158,7 @@ export async function createProjectAction(
   const created = await prisma.project.create({
     data: {
       title: payload.title,
-      slug: payload.slug,
+      slug,
       shortText: payload.shortText,
       fullText: payload.fullText,
       coverImage: "",
@@ -108,14 +170,14 @@ export async function createProjectAction(
     },
   });
 
-  revalidatePublic(payload.slug);
+  revalidatePublic(slug);
   redirect(`/admin/projekte/${created.id}`);
 }
 
 export async function updateProjectAction(
-  _prev: ProjectFormState,
+  _prev: ProjectFormActionState,
   formData: FormData,
-): Promise<ProjectFormState> {
+): Promise<ProjectFormActionState> {
   await ensureAdmin();
 
   const id = getString(formData, "id");
@@ -127,24 +189,17 @@ export async function updateProjectAction(
   const payload = readPayload(formData);
   const fieldErrors = validatePayload(payload);
   if (Object.keys(fieldErrors).length > 0) {
-    return { fieldErrors, error: "Bitte Felder prüfen" };
-  }
-
-  if (payload.slug !== project.slug) {
-    const existing = await prisma.project.findUnique({ where: { slug: payload.slug } });
-    if (existing) {
-      return {
-        fieldErrors: { slug: "Slug existiert bereits" },
-        error: "Slug existiert bereits",
-      };
-    }
+    return {
+      fieldErrors,
+      error: "Bitte Felder prüfen",
+      values: persistValues(payload),
+    };
   }
 
   await prisma.project.update({
     where: { id },
     data: {
       title: payload.title,
-      slug: payload.slug,
       shortText: payload.shortText,
       fullText: payload.fullText,
       location: payload.location || null,
@@ -153,7 +208,7 @@ export async function updateProjectAction(
     },
   });
 
-  revalidatePublic(payload.slug, project.slug);
+  revalidatePublic(project.slug);
   redirect("/admin/projekte");
 }
 
