@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import SiteFooter from "@/components/SiteFooter";
+import CookieNoticeBanner from "@/components/layout/CookieNoticeBanner";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
@@ -17,8 +17,9 @@ export default function RootLayout({
     <html lang="de">
       <body>
         {children}
-        
+
         <Footer />
+        <CookieNoticeBanner />
       </body>
     </html>
   );
