@@ -3,6 +3,7 @@ import { Resend } from "resend"
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: Request) {
+  console.log("CONTACT_EMAIL:", process.env.CONTACT_EMAIL);
   try {
     const formData = await req.json()
 
