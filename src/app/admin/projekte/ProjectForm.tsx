@@ -181,7 +181,6 @@ export default function ProjectForm({ mode, initial }: ProjectFormProps) {
   );
 }
 
-const MAX_UPLOAD_BATCH = 5;
 const MAX_IMAGES_TOTAL = 15;
 
 type SelectedFile = {
@@ -261,55 +260,40 @@ function ProjectImagesEditor({
   }
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const list = Array.from(e.target.files ?? []);
+    const file = e.target.files?.[0];
 
     const resetPicker = () => {
       if (fileInputRef.current) fileInputRef.current.value = "";
     };
 
-    if (list.length === 0) {
+    if (!file) {
       resetPicker();
       return;
     }
 
     setLocalError(null);
 
-    const heic = list.find(isHeic);
-    if (heic) {
+    if (isHeic(file)) {
       setLocalError(HEIC_ERROR);
       resetPicker();
       return;
     }
 
-    if (list.length > MAX_UPLOAD_BATCH) {
-      setLocalError(
-        "Es können maximal 5 Bilder gleichzeitig ausgewählt werden.",
-      );
-      resetPicker();
-      return;
-    }
-
-    if (selected.length + list.length > MAX_UPLOAD_BATCH) {
-      setLocalError(
-        "Es können höchstens 5 Bilder pro Upload ausgewählt werden.",
-      );
-      resetPicker();
-      return;
-    }
-
-    if (selected.length + list.length > remainingSlots) {
+    if (remainingSlots < 1) {
       setLocalError("Maximal 15 Bilder pro Projekt sind erlaubt.");
       resetPicker();
       return;
     }
 
     setSelected((prev) => {
-      const additions: SelectedFile[] = list.map((file) => ({
-        id: `${file.name}-${file.size}-${file.lastModified}-${crypto.randomUUID()}`,
-        file,
-        url: URL.createObjectURL(file),
-      }));
-      return [...prev, ...additions];
+      for (const s of prev) URL.revokeObjectURL(s.url);
+      return [
+        {
+          id: `${file.name}-${file.size}-${file.lastModified}-${crypto.randomUUID()}`,
+          file,
+          url: URL.createObjectURL(file),
+        },
+      ];
     });
 
     resetPicker();
@@ -320,14 +304,7 @@ function ProjectImagesEditor({
     setLocalError(null);
 
     if (selected.length === 0) {
-      setLocalError("Bitte mindestens eine Datei auswählen");
-      return;
-    }
-
-    if (selected.length > MAX_UPLOAD_BATCH) {
-      setLocalError(
-        "Es können höchstens 5 Bilder pro Upload ausgewählt werden.",
-      );
+      setLocalError("Bitte ein Bild auswählen.");
       return;
     }
 
@@ -362,8 +339,7 @@ function ProjectImagesEditor({
 
   const busy = uploadPending || compressing;
 
-  const pickFilesLabel =
-    selected.length === 0 ? "Bilder auswählen" : "Weitere Bilder auswählen";
+  const pickFilesLabel = "Bild auswählen";
 
   return (
     <section className="rounded-lg border border-gray-200 bg-white p-5">
@@ -415,11 +391,10 @@ function ProjectImagesEditor({
             id={`project-files-${projectId}`}
             type="file"
             accept={ALLOWED_INPUT_ACCEPT}
-            multiple
             onChange={handleFileChange}
             disabled={busy || remainingSlots === 0}
             className="sr-only"
-            aria-label="Projektbilder auswählen"
+            aria-label="Projektbild auswählen"
           />
           <button
             type="button"
@@ -430,17 +405,14 @@ function ProjectImagesEditor({
             {pickFilesLabel}
           </button>
           <p className="text-xs text-gray-500">
-            Max. 15 Bilder pro Projekt, max. 5 Bilder pro Upload.
+            Max. 15 Bilder pro Projekt. Bilder werden automatisch verkleinert.
           </p>
         </div>
 
         {selected.length > 0 ? (
           <div className="space-y-2">
             <p className="text-sm font-medium text-gray-700">
-              {selected.length}{" "}
-              {selected.length === 1
-                ? "Bild ausgewählt"
-                : "Bilder ausgewählt"}
+              1 Bild ausgewählt
             </p>
             <ul className="flex flex-wrap gap-2">
               {selected.map((s) => (
@@ -476,10 +448,10 @@ function ProjectImagesEditor({
             className="rounded bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:opacity-50"
           >
             {compressing
-              ? "Werden vorbereitet…"
+              ? "Wird vorbereitet…"
               : uploadPending
-                ? "Werden hochgeladen…"
-                : "Ausgewählte Bilder hochladen"}
+                ? "Wird hochgeladen…"
+                : "Ausgewähltes Bild hochladen"}
           </button>
           <p className="text-xs text-gray-500">
             JPG, PNG oder WebP · werden automatisch verkleinert
