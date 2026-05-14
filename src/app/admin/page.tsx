@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const navItems = [
-  { href: "/admin/impressum", label: "Impressum" },
-  { href: "/admin/datenschutz", label: "Datenschutz" },
   { href: "/admin/projekte", label: "Projekte" },
   { href: "/admin/team", label: "Team" },
+  { href: "/admin/impressum", label: "Impressum" },
+  { href: "/admin/datenschutz", label: "Datenschutz" },
 ];
 
 export default function Page() {
