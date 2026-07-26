@@ -129,27 +129,57 @@ export default function HomeClient({ featuredProjects }: HomeClientProps) {
     members: [
       {
         id: "1",
+        name: "Besik Gigauri",
+        role: "Geschäftsleiter",
+        image: "/images/team/besik.jpg",
+      },
+      {
+        id: "2",
         name: "Zviadi Zviadauri",
         role: "Montageleiter",
         image: "/images/team/zvyat.jpg",
       },
       {
-        id: "2",
+        id: "3",
         name: "Andrey Lazarev",
         role: "Montageleiter",
         image: "/images/team/andrey.jpg",
       },
       {
-        id: "3",
-        name: "Denis Gitlan",
+        id: "4",
+        name: "Name Here",
         role: "Monteur",
         image: "/images/team/denis.jpg",
       },
       {
-        id: "4",
+        id: "5",
         name: "Valiko Ompolasvili",
         role: "Monteur",
         image: "/images/team/valera.jpg",
+      },
+      {
+        id: "6",
+        name: "Name Here",
+        role: "Monteur",
+        image: "/images/team/777.jpg",
+      },
+      {
+        id: "7",
+        name: "Name Here",
+        role: "Monteur",
+        image: "/images/team/888.jpg",
+      },
+      {
+        id: "8",
+        name: "Vitalik Nachname",
+        role: "Monteur",
+        image: "/images/team/vitalik.jpg",
+      },
+      {
+        id: "9",
+        name: "Zuru Zviadauri",
+        role: "Montageleiter",
+        image: "/images/team/zuru.jpg",
       },
     ],
   };
