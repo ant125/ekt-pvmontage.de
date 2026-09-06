@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { prisma } from "@/lib/prisma";
+import {
+  ADMIN_SESSION_COOKIE,
+  ADMIN_SESSION_MAX_AGE_SEC,
+  adminSessionCookieOptions,
+  createAdminSessionToken,
+} from "@/lib/admin-session";
 
 export async function POST(request: Request) {
   const contentType = request.headers.get("content-type") || "";
@@ -17,6 +23,8 @@ export async function POST(request: Request) {
     password = String(formData.get("password") || "");
   }
 
+  email = email.trim();
+
   const admin = await prisma.admin.findUnique({
     where: { email },
   });
@@ -31,11 +39,30 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false }, { status: 401 });
   }
 
+  let token: string;
+  try {
+    token = await createAdminSessionToken({
+      sub: admin.id,
+      email: admin.email,
+    });
+  } catch {
+    return NextResponse.json(
+      { success: false, error: "Server misconfigured" },
+      { status: 500 },
+    );
+  }
+
   const response = NextResponse.json({ success: true });
-  response.cookies.set("admin-auth", "true", {
+  response.cookies.set(
+    ADMIN_SESSION_COOKIE,
+    token,
+    adminSessionCookieOptions(ADMIN_SESSION_MAX_AGE_SEC),
+  );
+  // Clear legacy forgeable cookie if present
+  response.cookies.set("admin-auth", "", {
     httpOnly: true,
     path: "/",
-    sameSite: "lax",
+    maxAge: 0,
   });
 
   return response;

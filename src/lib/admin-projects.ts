@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+import { requireAdminSession } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 import type { UploadActionState } from "@/lib/admin-projects-types";
 import {
@@ -29,10 +29,7 @@ export type ProjectFormActionState =
 const MAX_PROJECT_IMAGES = 15;
 
 async function ensureAdmin() {
-  const c = await cookies();
-  if (c.get("admin-auth")?.value !== "true") {
-    throw new Error("Unauthorized");
-  }
+  await requireAdminSession();
 }
 
 function getString(formData: FormData, key: string): string {

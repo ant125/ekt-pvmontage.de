@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getAdminSession } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 
 const ALLOWED_TYPES = ["impressum", "datenschutz"] as const;
@@ -22,6 +23,11 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
+  const session = await getAdminSession();
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   let body: unknown;
   try {
     body = await req.json();

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { LogoutButton } from "./LogoutButton";
 
 export const metadata = {
   title: "Admin · PV Montage",
@@ -12,8 +13,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       <div className="flex min-h-screen flex-col bg-white text-zinc-900">
         <main className="flex-1">{children}</main>
         <footer className="border-t border-zinc-200">
-          <div className="mx-auto max-w-6xl px-6 py-4 text-xs text-zinc-500">
-            Admin Panel
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 text-xs text-zinc-500">
+            <span>Admin Panel</span>
+            <LogoutButton />
           </div>
         </footer>
       </div>
