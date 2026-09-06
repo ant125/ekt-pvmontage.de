@@ -119,64 +119,56 @@ export default function HomeClient({ featuredProjects }: HomeClientProps) {
 
   type TeamSectionData = {
     title: string;
-    groupImage?: string;
     members: TeamMember[];
   };
 
   const teamData: TeamSectionData = {
     title: "Unser Team",
-    groupImage: "/images/team/teams.jpg",
     members: [
       {
         id: "1",
-        name: "Besik Gigauri",
-        role: "Geschäftsleiter",
-        image: "/images/team/besik.jpg",
-      },
-      {
-        id: "2",
         name: "Zviadi Zviadauri",
         role: "Montageleiter",
         image: "/images/team/zvyat.jpg",
       },
       {
-        id: "3",
+        id: "2",
         name: "Andrey Lazarev",
         role: "Montageleiter",
         image: "/images/team/andrey.jpg",
       },
       {
-        id: "4",
-        name: "Name Here",
+        id: "3",
+        name: "Andrei Popescu",
         role: "Monteur",
         image: "/images/team/denis.jpg",
       },
       {
-        id: "5",
+        id: "4",
         name: "Valiko Ompolasvili",
         role: "Monteur",
         image: "/images/team/valera.jpg",
       },
       {
-        id: "6",
-        name: "Name Here",
+        id: "5",
+        name: "Oleksandr Melnyk",
         role: "Monteur",
         image: "/images/team/777.jpg",
       },
       {
-        id: "7",
-        name: "Name Here",
+        id: "6",
+        name: "Mihai Constantinescu",
         role: "Monteur",
         image: "/images/team/888.jpg",
       },
       {
-        id: "8",
-        name: "Vitalik Nachname",
+        id: "7",
+        name: "Vitalik Ciobanu",
         role: "Monteur",
         image: "/images/team/vitalik.jpg",
       },
       {
-        id: "9",
+        id: "8",
         name: "Zuru Zviadauri",
         role: "Montageleiter",
         image: "/images/team/zuru.jpg",
@@ -451,24 +443,6 @@ export default function HomeClient({ featuredProjects }: HomeClientProps) {
             <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-zinc-900 md:text-4xl">
               {teamData.title}
             </h2>
-
-            {teamData.groupImage && (
-              <div className="relative mt-8 mb-10 aspect-[3/1] overflow-hidden rounded-2xl sm:mt-12">
-                <img
-                  src={teamData.groupImage}
-                  alt="Unser Team"
-                  className="h-full w-full object-cover"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 flex items-end px-4 pb-2 text-white sm:pb-4 lg:pb-8">
-                  <div>
-                    <p className="text-sm leading-tight text-white/80">
-                      Erfahrene Monteure für Ihr Projekt
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
 
             <div className="mt-12 grid auto-rows-fr gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {teamData.members.map((member) => (
